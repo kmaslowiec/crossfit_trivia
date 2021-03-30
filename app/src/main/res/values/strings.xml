@@ -3,4 +3,5 @@
     <string name="start_text">Start Fragment</string>
     <string name="game_text">Game Fragment</string>
     <string name="temp_game_name">Game</string>
+    <string name="game_start_button">Test</string>
 </resources>
