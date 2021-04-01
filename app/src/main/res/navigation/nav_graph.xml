@@ -19,5 +19,10 @@
         android:id="@+id/gameFragment"
         android:name="com.example.android.crossfittrivia.GameFragment"
         android:label="@string/temp_game_name"
-        tools:layout="@layout/fragment_game" />
+        tools:layout="@layout/fragment_game" >
+        <argument
+            android:name="hello_text"
+            app:argType="string"
+            android:defaultValue="dupa" />
+    </fragment>
 </navigation>
