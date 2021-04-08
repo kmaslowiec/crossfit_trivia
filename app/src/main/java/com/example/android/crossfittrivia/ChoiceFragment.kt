@@ -7,21 +7,21 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.android.crossfittrivia.databinding.FragmentGameBinding
+import com.example.android.crossfittrivia.databinding.FragmentChoiceBinding
 
-class GameFragment : Fragment() {
+class ChoiceFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        val binding: FragmentGameBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_game, container, false)
+        val binding: FragmentChoiceBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_choice, container, false)
 
         /**
          * Gets data from StartFragment
          */
-        val args = GameFragmentArgs.fromBundle(requireArguments())
+        val args = ChoiceFragmentArgs.fromBundle(requireArguments())
 
         Toast.makeText(activity, args.helloText, Toast.LENGTH_LONG).show()
 

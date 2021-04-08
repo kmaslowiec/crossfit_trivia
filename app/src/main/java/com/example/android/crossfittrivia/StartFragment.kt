@@ -41,7 +41,7 @@ class StartFragment : Fragment() {
              * Using Safe Args it passes the data as a parameter
              */
             view.findNavController()
-                .navigate(StartFragmentDirections.actionStartFragmentToGameFragment("Hermes"))
+                .navigate(StartFragmentDirections.actionStartFragmentToChoiceFragment("Hermes"))
         }
     }
 }

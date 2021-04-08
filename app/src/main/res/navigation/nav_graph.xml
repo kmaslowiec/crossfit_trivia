@@ -11,18 +11,18 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_start">
         <action
-            android:id="@+id/action_startFragment_to_gameFragment"
-            app:destination="@id/gameFragment"
+            android:id="@+id/action_startFragment_to_choiceFragment"
+            app:destination="@id/choiceFragment"
             app:popUpTo="@id/startFragment" />
     </fragment>
     <fragment
-        android:id="@+id/gameFragment"
-        android:name="com.example.android.crossfittrivia.GameFragment"
+        android:id="@+id/choiceFragment"
+        android:name="com.example.android.crossfittrivia.ChoiceFragment"
         android:label="@string/temp_game_name"
-        tools:layout="@layout/fragment_game" >
+        tools:layout="@layout/fragment_choice">
         <argument
             android:name="hello_text"
-            app:argType="string"
-            android:defaultValue="dupa" />
+            android:defaultValue="dupa"
+            app:argType="string" />
     </fragment>
 </navigation>
