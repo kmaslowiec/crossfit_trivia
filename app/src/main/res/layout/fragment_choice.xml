@@ -1,19 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
-
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ChoiceFragment">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/emomText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/game_text" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="wrap_content"
+            android:text="@string/lorem_ipsum" />
+
+        <Button
+            android:id="@+id/emomButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/emomButton" />
+
+        <TextView
+            android:id="@+id/amrapText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lorem_ipsum" />
+
+        <Button
+            android:id="@+id/amrapButon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/amrapButton" />
+
+        <TextView
+            android:id="@+id/chipperText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lorem_ipsum" />
+
+        <Button
+            android:id="@+id/chipperButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Chipper" />
+
+    </LinearLayout>
 </layout>

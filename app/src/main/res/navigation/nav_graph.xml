@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_choice">
         <argument
             android:name="hello_text"
-            android:defaultValue="dupa"
+            android:defaultValue="default"
             app:argType="string" />
     </fragment>
 </navigation>
