@@ -9,7 +9,8 @@
 
         <TextView
             android:id="@+id/emomText"
-            android:layout_width="match_parent"
+            style="@style/label_choice_style"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lorem_ipsum" />
 
@@ -21,19 +22,22 @@
 
         <TextView
             android:id="@+id/amrapText"
-            android:layout_width="match_parent"
+            style="@style/label_choice_style"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lorem_ipsum" />
 
         <Button
             android:id="@+id/amrapButon"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/amrapButton" />
 
         <TextView
             android:id="@+id/chipperText"
-            android:layout_width="match_parent"
+            style="@style/label_choice_style"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lorem_ipsum" />
 
@@ -42,6 +46,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Chipper" />
-
     </LinearLayout>
 </layout>

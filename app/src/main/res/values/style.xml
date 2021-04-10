@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="label_choice_style">
+        <item name="android:layout_marginStart">@dimen/label_start_margin</item>
+        <item name="android:layout_marginTop">@dimen/label_margin_top</item>
+        <item name="android:layout_marginEnd">@dimen/label_margin_end</item>
+        <item name="android:layout_marginBottom">@dimen/label_margin_bottom</item>
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+</resources>
