@@ -16,7 +16,8 @@
 
         <Button
             android:id="@+id/emomButton"
-            android:layout_width="match_parent"
+            style="@style/my_buttons"
+            android:layout_width="@dimen/width_button"
             android:layout_height="wrap_content"
             android:text="@string/emomButton" />
 
@@ -29,8 +30,8 @@
 
         <Button
             android:id="@+id/amrapButon"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="match_parent"
+            style="@style/my_buttons"
+            android:layout_width="@dimen/width_button"
             android:layout_height="wrap_content"
             android:text="@string/amrapButton" />
 
@@ -43,7 +44,8 @@
 
         <Button
             android:id="@+id/chipperButton"
-            android:layout_width="match_parent"
+            style="@style/my_buttons"
+            android:layout_width="@dimen/width_button"
             android:layout_height="wrap_content"
             android:text="@string/Chipper" />
     </LinearLayout>

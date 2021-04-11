@@ -4,4 +4,5 @@
     <dimen name="label_margin_end">8dp</dimen>
     <dimen name="label_margin_top">8dp</dimen>
     <dimen name="label_margin_bottom">8dp</dimen>
+    <dimen name="width_button">100dp</dimen>
 </resources>
