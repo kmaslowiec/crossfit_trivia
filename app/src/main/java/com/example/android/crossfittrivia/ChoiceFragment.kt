@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.android.crossfittrivia.databinding.FragmentChoiceBinding
 
 class ChoiceFragment : Fragment() {
@@ -19,14 +19,20 @@ class ChoiceFragment : Fragment() {
 
         binding = FragmentChoiceBinding.inflate(inflater)
 
-        /**
-         * Gets data from StartFragment
-         */
-        val args = ChoiceFragmentArgs.fromBundle(requireArguments())
-
-        Toast.makeText(activity, args.helloText, Toast.LENGTH_LONG).show()
+        emomButton(binding)
 
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    /*
+* Init to_emom_button
+ */
+    private fun emomButton(binding: FragmentChoiceBinding) {
+        binding.toEmomButton.setOnClickListener { view ->
+
+            view.findNavController()
+                .navigate(ChoiceFragmentDirections.actionChoiceFragmentToEmomFragment())
+        }
     }
 }

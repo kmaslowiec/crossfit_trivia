@@ -31,7 +31,7 @@ class StartFragment : Fragment() {
     * Init to_choice_button
      */
     private fun startButton(binding: FragmentStartBinding) {
-        binding.startButton.setOnClickListener { view ->
+        binding.toChoiceButton.setOnClickListener { view ->
             /**
              * Using Safe Args it passes the data as a parameter
              */
