@@ -24,5 +24,13 @@
             android:name="hello_text"
             android:defaultValue="default"
             app:argType="string" />
+        <action
+            android:id="@+id/action_choiceFragment_to_emomFragment"
+            app:destination="@id/emomFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/emomFragment"
+        android:name="com.example.android.crossfittrivia.EmomFragment"
+        android:label="@string/emom_title"
+        tools:layout="@layout/fragment_emom" />
 </navigation>

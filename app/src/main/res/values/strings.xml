@@ -3,7 +3,7 @@
     <string name="start_text">Start Fragment</string>
     <string name="game_text">Game Fragment</string>
     <string name="temp_game_name">Choose mode</string>
-    <string name="game_start_button">Test</string>
+    <string name="game_start_button">Start Game</string>
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -11,4 +11,7 @@
     <string name="emomButton">EMOM</string>
     <string name="amrapButton">AMRAP</string>
     <string name="chipperButton">Chipper</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="emom_title">EMOM</string>
 </resources>

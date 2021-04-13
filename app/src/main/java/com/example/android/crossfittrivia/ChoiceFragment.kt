@@ -17,7 +17,7 @@ class ChoiceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val binding = FragmentChoiceBinding.inflate(inflater)
+        binding = FragmentChoiceBinding.inflate(inflater)
 
         /**
          * Gets data from StartFragment
