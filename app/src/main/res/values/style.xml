@@ -2,16 +2,25 @@
 <resources>
 
     <style name="label_choice_style">
-        <item name="android:layout_marginStart">@dimen/label_start_margin</item>
+        <item name="android:layout_marginStart">@dimen/view_start_margin</item>
         <item name="android:layout_marginTop">@dimen/label_margin_top</item>
-        <item name="android:layout_marginEnd">@dimen/label_margin_end</item>
+        <item name="android:layout_marginEnd">@dimen/view_margin_end</item>
         <item name="android:layout_marginBottom">@dimen/label_margin_bottom</item>
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="my_buttons">
-        <item name="android:textColor">@color/black</item>
-        <item name="android:backgroundTint">@color/red</item>>
+    <style name="choice_button">
+        <item name="android:background">@drawable/shape_choice_button</item>
+        <item name="android:fontFamily">@font/roboto_mono_bold</item>
+        <item name="android:layout_marginStart">@dimen/view_start_margin</item>
+        <item name="android:layout_marginEnd">@dimen/view_margin_end</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:paddingTop">@dimen/top_bottom_padding_button</item>
+        <item name="android:paddingBottom">@dimen/top_bottom_padding_button</item>
+        <item name="android:gravity">center</item>
+        <!--<item name="android:textAlignment">center</item>-->
+        <item name="android:textSize">@dimen/text_button</item>
     </style>
 </resources>

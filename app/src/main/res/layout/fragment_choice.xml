@@ -14,11 +14,12 @@
             android:layout_height="wrap_content"
             android:text="@string/lorem_ipsum" />
 
-        <Button
+        <!--EMOM Button-->
+        <TextView
             android:id="@+id/emomButton"
-            style="@style/my_buttons"
-            android:layout_width="@dimen/width_button"
-            android:layout_height="wrap_content"
+            style="@style/choice_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_choice_button"
             android:text="@string/emomButton" />
 
         <TextView
@@ -28,11 +29,12 @@
             android:layout_height="wrap_content"
             android:text="@string/lorem_ipsum" />
 
-        <Button
+        <!--AMRAP Button-->
+        <TextView
             android:id="@+id/amrapButon"
-            style="@style/my_buttons"
-            android:layout_width="@dimen/width_button"
-            android:layout_height="wrap_content"
+            style="@style/choice_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_choice_button"
             android:text="@string/amrapButton" />
 
         <TextView
@@ -42,11 +44,12 @@
             android:layout_height="wrap_content"
             android:text="@string/lorem_ipsum" />
 
-        <Button
-            android:id="@+id/chipperButton"
-            style="@style/my_buttons"
-            android:layout_width="@dimen/width_button"
-            android:layout_height="wrap_content"
-            android:text="@string/Chipper" />
+        <!--Chipper Button-->
+        <TextView
+            android:id="@+id/chipperButon"
+            style="@style/choice_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_choice_button"
+            android:text="@string/chipperButton" />
     </LinearLayout>
 </layout>

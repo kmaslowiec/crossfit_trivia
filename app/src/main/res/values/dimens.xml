@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="label_start_margin">8dp</dimen>
-    <dimen name="label_margin_end">8dp</dimen>
+    <dimen name="view_start_margin">8dp</dimen>
+    <dimen name="view_margin_end">8dp</dimen>
     <dimen name="label_margin_top">8dp</dimen>
     <dimen name="label_margin_bottom">8dp</dimen>
-    <dimen name="width_button">100dp</dimen>
+    <dimen name="top_bottom_padding_button">8dp</dimen>
+
+    <!--text-->
+    <dimen name="text_button">35sp</dimen>
+    <dimen name="height_choice_button">65dp</dimen>
 </resources>
