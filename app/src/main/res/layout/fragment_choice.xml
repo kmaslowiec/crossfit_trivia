@@ -1,55 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ChoiceFragment">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/emom_text"
+        style="@style/label_choice_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lorem_ipsum" />
+
+    <!--EMOM Button-->
+    <TextView
+        android:id="@+id/to_emom_button"
+        style="@style/choice_button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="@dimen/height_choice_button"
+        android:text="@string/emomButton" />
 
-        <TextView
-            android:id="@+id/emom_text"
-            style="@style/label_choice_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lorem_ipsum" />
+    <TextView
+        android:id="@+id/amrap_text"
+        style="@style/label_choice_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lorem_ipsum" />
 
-        <!--EMOM Button-->
-        <TextView
-            android:id="@+id/to_emom_button"
-            style="@style/choice_button"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_choice_button"
-            android:text="@string/emomButton" />
+    <!--AMRAP Button-->
+    <TextView
+        android:id="@+id/to_amrap_button"
+        style="@style/choice_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_choice_button"
+        android:text="@string/amrapButton" />
 
-        <TextView
-            android:id="@+id/amrap_text"
-            style="@style/label_choice_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lorem_ipsum" />
+    <TextView
+        android:id="@+id/chipper_text"
+        style="@style/label_choice_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lorem_ipsum" />
 
-        <!--AMRAP Button-->
-        <TextView
-            android:id="@+id/to_amrap_button"
-            style="@style/choice_button"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_choice_button"
-            android:text="@string/amrapButton" />
-
-        <TextView
-            android:id="@+id/chipper_text"
-            style="@style/label_choice_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lorem_ipsum" />
-
-        <!--Chipper Button-->
-        <TextView
-            android:id="@+id/to_chipper_button"
-            style="@style/choice_button"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_choice_button"
-            android:text="@string/chipperButton" />
-    </LinearLayout>
-</layout>
+    <!--Chipper Button-->
+    <TextView
+        android:id="@+id/to_chipper_button"
+        style="@style/choice_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_choice_button"
+        android:text="@string/chipperButton" />
+</LinearLayout>
