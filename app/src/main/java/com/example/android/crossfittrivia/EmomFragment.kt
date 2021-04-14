@@ -18,7 +18,7 @@ class EmomFragment : Fragment() {
         //Change fragment title
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.emom_title)
 
-        val binding : FragmentEmomBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_emom, container, false)
+        val binding: FragmentEmomBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_emom, container, false)
 
         // Inflate the layout for this fragment
         return binding.root
