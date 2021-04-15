@@ -7,9 +7,16 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.example.android.crossfittrivia.data.QUESTIONS
+import com.example.android.crossfittrivia.data.Question
 import com.example.android.crossfittrivia.databinding.FragmentEmomBinding
 
 class EmomFragment : Fragment() {
+
+    lateinit var currentQuestion: Question
+    lateinit var answers: MutableList<String>
+    private var questionIndex = 0
+    private val numQuestions = Math.min((QUESTIONS.values().size + 1) / 2, 3)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
