@@ -12,7 +12,14 @@
     <string name="amrapButton">AMRAP</string>
     <string name="chipperButton">Chipper</string>
 
+    <!--EmomFragment-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="emom_title">EMOM</string>
     <string name="question_pic_desc">Question picture</string>
+    <!--radio  buttons-->
+    <string name="first_radiobutton_tool_text">First Radio Button</string>
+    <string name="second_radiobutton_tool_text">Second Radio Button</string>
+    <string name="third_radiobutton_tool_text">Third Radio Button</string>
+    <string name="fourth_radiobutton_tool_text">Fourth Radio Button</string>
+
 </resources>

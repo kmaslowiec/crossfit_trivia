@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="game"
+            type="com.example.android.crossfittrivia.EmomFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,7 +14,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/questionImage"
             android:layout_width="0dp"
             android:layout_height="@dimen/image_header_height"
             android:layout_marginStart="8dp"
@@ -29,12 +31,14 @@
             style="@style/label_choice_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/lorem_ipsum"
+            android:text="@{game.currentQuestion.text}"
             app:layout_constraintBottom_toTopOf="@+id/radioGroup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/questionImage"
+            tools:text="@string/lorem_ipsum"
+            />
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -48,32 +52,32 @@
             app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/first_answer_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RadioButton"
-                tools:ignore="HardcodedText" />
+                android:text="@{game.answers[0]}"
+                tools:text="@string/first_radiobutton_tool_text" />
 
             <RadioButton
-                android:id="@+id/radioButton2"
+                android:id="@+id/second_answer_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RadioButton"
-                tools:ignore="HardcodedText" />
+                android:text="@{game.answers[1]}"
+                tools:text="@string/second_radiobutton_tool_text" />
 
             <RadioButton
-                android:id="@+id/radioButton3"
+                android:id="@+id/third_answer_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RadioButton"
-                tools:ignore="HardcodedText" />
+                android:text="@{game.answers[2]}"
+                tools:text="@string/third_radiobutton_tool_text" />
 
             <RadioButton
-                android:id="@+id/radioButton4"
+                android:id="@+id/fourth_answer_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RadioButton"
-                tools:ignore="HardcodedText" />
+                android:text="@{game.answers[3]}"
+                tools:text="@string/fourth_radiobutton_tool_text" />
         </RadioGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
