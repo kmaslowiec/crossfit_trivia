@@ -19,7 +19,10 @@ class EmomFragment : Fragment() {
     lateinit var currentQuestion: Question
     lateinit var answers: MutableList<String>
     private var questionIndex = 0
-    private val numQuestions = Math.min((questions.size + 1) / 2, 3)
+    private var result = 0
+
+    //setup number of questions
+    private val numQuestions = 10
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,6 +63,7 @@ class EmomFragment : Fragment() {
                 // answer matches, we have the correct answer.
                 if (answers[answerIndex] == currentQuestion.answers[0]) {
                     questionIndex++
+                    result++
                     // Advance to the next question
                     if (questionIndex < numQuestions) {
                         currentQuestion = questions[questionIndex]
@@ -69,7 +73,7 @@ class EmomFragment : Fragment() {
                         view.findNavController().navigate(EmomFragmentDirections.actionEmomFragmentToResultsFragment())
                     }
                 } else {
-                    view.findNavController().navigate(EmomFragmentDirections.actionEmomFragmentToNoRepFragment())
+                    view.findNavController().navigate(EmomFragmentDirections.actionEmomFragmentToNoRepFragment(questionIndex, result))
                 }
             }
         }

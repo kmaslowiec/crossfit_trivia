@@ -44,7 +44,14 @@
         android:id="@+id/noRepFragment"
         android:name="com.example.android.crossfittrivia.NoRepFragment"
         android:label="fragment_no_rep"
-        tools:layout="@layout/fragment_no_rep" />
+        tools:layout="@layout/fragment_no_rep">
+        <argument
+            android:name="currentQuestion"
+            app:argType="integer" />
+        <argument
+            android:name="result"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/resultsFragment"
         android:name="com.example.android.crossfittrivia.ResultsFragment"
