@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.android.crossfittrivia.data.Question
 import com.example.android.crossfittrivia.data.QuestionsList
 import com.example.android.crossfittrivia.databinding.FragmentEmomBinding
 
 class EmomFragment : Fragment() {
 
+    private lateinit var binding: FragmentEmomBinding
     private var questions: MutableList<Question> = QuestionsList.questions
     lateinit var currentQuestion: Question
     lateinit var answers: MutableList<String>
@@ -26,12 +28,51 @@ class EmomFragment : Fragment() {
         //Change fragment title
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.emom_title)
 
-        val binding: FragmentEmomBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_emom, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_emom, container, false)
 
         randomizeQuestions()
 
+        // Bind this fragment class to the layout
+        binding.game = this
+
+        // Set the onClickListener for the submitButton
+        submitButtonAction()
+
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    // Set the onClickListener for the submitButton
+    private fun submitButtonAction() {
+
+        binding.submitGameButton.setOnClickListener @Suppress("UNUSED_ANONYMOUS_PARAMETER")
+        { view: View ->
+            val checkedId = binding.questionsRadioButton.checkedRadioButtonId
+            // Do nothing if nothing is checked (id == -1)
+            if (-1 != checkedId) {
+                var answerIndex = 0
+                when (checkedId) {
+                    R.id.second_answer_radiobutton -> answerIndex = 1
+                    R.id.third_answer_radiobutton -> answerIndex = 2
+                    R.id.fourth_answer_radiobutton -> answerIndex = 3
+                }
+                // The first answer in the original question is always the correct one, so if our
+                // answer matches, we have the correct answer.
+                if (answers[answerIndex] == currentQuestion.answers[0]) {
+                    questionIndex++
+                    // Advance to the next question
+                    if (questionIndex < numQuestions) {
+                        currentQuestion = questions[questionIndex]
+                        setQuestion()
+                        binding.invalidateAll()
+                    } else {
+                        view.findNavController().navigate(EmomFragmentDirections.actionEmomFragmentToResultsFragment())
+                    }
+                } else {
+                    view.findNavController().navigate(EmomFragmentDirections.actionEmomFragmentToNoRepFragment())
+                }
+            }
+        }
     }
 
     private fun randomizeQuestions() {
@@ -48,6 +89,5 @@ class EmomFragment : Fragment() {
         answers = currentQuestion.answers.toMutableList()
         // and shuffle them
         answers.shuffle()
-        //(activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions)
     }
 }

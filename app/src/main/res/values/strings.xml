@@ -21,5 +21,9 @@
     <string name="second_radiobutton_tool_text">Second Radio Button</string>
     <string name="third_radiobutton_tool_text">Third Radio Button</string>
     <string name="fourth_radiobutton_tool_text">Fourth Radio Button</string>
+    <string name="submit_text_button">Submit</string>
 
+    <!--NoRepFragment-->
+    <string name="no_rep_title">No Rep</string>
+    <string name="results_title">Results</string>
 </resources>

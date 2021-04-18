@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="game"
             type="com.example.android.crossfittrivia.EmomFragment" />
@@ -32,22 +33,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{game.currentQuestion.text}"
-            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+            app:layout_constraintBottom_toTopOf="@+id/questions_radio_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/questionImage"
-            tools:text="@string/lorem_ipsum"
-            />
+            tools:text="@string/lorem_ipsum" />
 
         <RadioGroup
-            android:id="@+id/radioGroup"
+            android:id="@+id/questions_radio_button"
             android:layout_width="395dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/submit_game_button"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView">
 
@@ -79,5 +80,16 @@
                 android:text="@{game.answers[3]}"
                 tools:text="@string/fourth_radiobutton_tool_text" />
         </RadioGroup>
+
+        <Button
+            android:id="@+id/submit_game_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_text_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/questions_radio_button" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

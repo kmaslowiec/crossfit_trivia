@@ -32,5 +32,22 @@
         android:id="@+id/emomFragment"
         android:name="com.example.android.crossfittrivia.EmomFragment"
         android:label="@string/emom_title"
-        tools:layout="@layout/fragment_emom" />
+        tools:layout="@layout/fragment_emom">
+        <action
+            android:id="@+id/action_emomFragment_to_noRepFragment"
+            app:destination="@id/noRepFragment" />
+        <action
+            android:id="@+id/action_emomFragment_to_resultsFragment"
+            app:destination="@id/resultsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noRepFragment"
+        android:name="com.example.android.crossfittrivia.NoRepFragment"
+        android:label="fragment_no_rep"
+        tools:layout="@layout/fragment_no_rep" />
+    <fragment
+        android:id="@+id/resultsFragment"
+        android:name="com.example.android.crossfittrivia.ResultsFragment"
+        android:label="fragment_results"
+        tools:layout="@layout/fragment_results" />
 </navigation>
