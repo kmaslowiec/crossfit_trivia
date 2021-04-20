@@ -20,10 +20,6 @@
         android:name="com.example.android.crossfittrivia.ChoiceFragment"
         android:label="@string/temp_game_name"
         tools:layout="@layout/fragment_choice">
-        <argument
-            android:name="hello_text"
-            android:defaultValue="default"
-            app:argType="string" />
         <action
             android:id="@+id/action_choiceFragment_to_emomFragment"
             app:destination="@id/emomFragment" />
@@ -45,12 +41,9 @@
         android:name="com.example.android.crossfittrivia.NoRepFragment"
         android:label="fragment_no_rep"
         tools:layout="@layout/fragment_no_rep">
-        <argument
-            android:name="currentQuestion"
-            app:argType="integer" />
-        <argument
-            android:name="result"
-            app:argType="integer" />
+        <action
+            android:id="@+id/action_noRepFragment_to_emomFragment"
+            app:destination="@id/emomFragment" />
     </fragment>
     <fragment
         android:id="@+id/resultsFragment"

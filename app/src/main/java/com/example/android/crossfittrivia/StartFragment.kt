@@ -10,6 +10,8 @@ import com.example.android.crossfittrivia.databinding.FragmentStartBinding
 
 class StartFragment : Fragment() {
 
+    lateinit var binding: FragmentStartBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -18,10 +20,10 @@ class StartFragment : Fragment() {
         /**
          * Setup view binding for the Fragment
          */
-        val binding: FragmentStartBinding = FragmentStartBinding.inflate(inflater)
+        binding = FragmentStartBinding.inflate(inflater)
 
         //Init to_choice_button
-        startButton(binding)
+        startButton()
 
         // Inflate the layout for this fragment
         return binding.root
@@ -30,13 +32,13 @@ class StartFragment : Fragment() {
     /*
     * Init to_choice_button
      */
-    private fun startButton(binding: FragmentStartBinding) {
+    private fun startButton() {
         binding.toChoiceButton.setOnClickListener { view ->
             /**
              * Using Safe Args it passes the data as a parameter
              */
             view.findNavController()
-                .navigate(StartFragmentDirections.actionStartFragmentToChoiceFragment("Hermes"))
+                .navigate(StartFragmentDirections.actionStartFragmentToChoiceFragment())
         }
     }
 }
