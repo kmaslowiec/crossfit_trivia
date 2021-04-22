@@ -1,6 +1,5 @@
 package com.example.android.crossfittrivia
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import com.example.android.crossfittrivia.data.GameData
 import com.example.android.crossfittrivia.data.Question
 import com.example.android.crossfittrivia.data.QuestionsList
 import com.example.android.crossfittrivia.databinding.FragmentEmomBinding
@@ -24,10 +24,11 @@ class EmomFragment : Fragment() {
     lateinit var answers: MutableList<String>
     private var questionIndex = 0
     private var result = 0
+    private var answeredQuestions = 0
     private val model: GameViewModel by activityViewModels()
 
     //setup number of questions
-    private val numQuestions = 10
+    private val numQuestions = 3
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,10 +42,13 @@ class EmomFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_emom, container, false)
 
         // Set Observer
-        val resultObserver = Observer<Int> { newResult ->
-            result = newResult
+        val gameObserver = Observer<GameData> { data ->
+            result = data.result
+            answeredQuestions = data.answeredQuestions
+
         }
-        model.currentResult.observe(activity as AppCompatActivity, resultObserver)
+
+        model.currentGame.observe(activity as AppCompatActivity, gameObserver)
 
         randomizeQuestions()
 
@@ -63,7 +67,9 @@ class EmomFragment : Fragment() {
         binding.submitGameButton.setOnClickListener @Suppress("UNUSED_ANONYMOUS_PARAMETER")
         { view: View ->
             val checkedId = binding.questionsRadioButton.checkedRadioButtonId
-
+            answeredQuestions++
+            model.currentGame.value = GameData(answeredQuestions, result)
+            Log.i("In button", answeredQuestions.toString())
             // Do nothing if nothing is checked (id == -1)
             if (-1 != checkedId) {
                 var answerIndex = 0
@@ -78,10 +84,13 @@ class EmomFragment : Fragment() {
                 if (answers[answerIndex] == currentQuestion.answers[0]) {
                     questionIndex++
                     result++
-                    model.currentResult.value = result
+
+                    model.currentGame.value = GameData(answeredQuestions, result)
+                    Log.i("result", result.toString())
 
                     // Advance to the next question
-                    if (questionIndex < numQuestions) {
+                    if (answeredQuestions < numQuestions) {
+
                         currentQuestion = questions[questionIndex]
                         setQuestion()
                         binding.invalidateAll()

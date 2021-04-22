@@ -7,7 +7,10 @@ import com.example.android.crossfittrivia.data.GameData
 
 class GameViewModel : ViewModel() {
 
-    val currentResult : MutableLiveData<Int> by lazy { MutableLiveData<Int>() }
+    //val currentResult : MutableLiveData<Int> by lazy { MutableLiveData<Int>() }
+
+    val currentGame : MutableLiveData<GameData> by lazy { MutableLiveData<GameData>() }
+
 
 }
 
