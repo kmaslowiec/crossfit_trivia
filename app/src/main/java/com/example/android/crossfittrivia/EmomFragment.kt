@@ -1,5 +1,6 @@
 package com.example.android.crossfittrivia
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,6 +39,9 @@ class EmomFragment : Fragment() {
         //Change fragment title
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.emom_title)
 
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        sharedPref?.edit()?.putInt("questions", numQuestions)?.apply()
+
         // Set DataBinding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_emom, container, false)
 
@@ -45,9 +49,9 @@ class EmomFragment : Fragment() {
         val gameObserver = Observer<GameData> { data ->
             result = data.result
             answeredQuestions = data.answeredQuestions
-
         }
 
+        //Observe the LiveData
         model.currentGame.observe(activity as AppCompatActivity, gameObserver)
 
         randomizeQuestions()

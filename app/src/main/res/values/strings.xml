@@ -27,4 +27,7 @@
     <string name="no_rep_title">No Rep</string>
     <string name="results_title">Results</string>
     <string name="back_no_rep_button">Back to Game</string>
+
+    <!--SharedPreferences-->
+    <string name="questions">questions</string>
 </resources>
