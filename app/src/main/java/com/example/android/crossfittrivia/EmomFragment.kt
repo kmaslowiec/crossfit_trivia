@@ -21,8 +21,8 @@ class EmomFragment : Fragment() {
 
     private lateinit var binding: FragmentEmomBinding
     private var questions: MutableList<Question> = QuestionsList.questions
-    lateinit var currentQuestion: Question
-    lateinit var answers: MutableList<String>
+    private lateinit var currentQuestion: Question
+    private lateinit var answers: MutableList<String>
     private var questionIndex = 0
     private var result = 0
     private var answeredQuestions = 0
@@ -39,27 +39,18 @@ class EmomFragment : Fragment() {
         //Change fragment title
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.emom_title)
 
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-        sharedPref?.edit()?.putInt("questions", numQuestions)?.apply()
+        setSharedPreferences()
 
         // Set DataBinding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_emom, container, false)
 
-        // Set Observer
-        val gameObserver = Observer<GameData> { data ->
-            result = data.result
-            answeredQuestions = data.answeredQuestions
-        }
-
-        //Observe the LiveData
-        model.currentGame.observe(activity as AppCompatActivity, gameObserver)
+        setObserver()
 
         randomizeQuestions()
 
         // Bind this fragment class to the layout
         binding.game = this
 
-        // Set onClickListener for the submitButton
         submitButtonAction()
 
         // Inflate the layout for this fragment
@@ -108,6 +99,7 @@ class EmomFragment : Fragment() {
         }
     }
 
+    //Randomize question before set them up
     private fun randomizeQuestions() {
         questions.shuffle()
         questionIndex = 0
@@ -122,5 +114,22 @@ class EmomFragment : Fragment() {
         answers = currentQuestion.answers.toMutableList()
         // and shuffle them
         answers.shuffle()
+    }
+
+    //Set SharedPreferences for num of question
+    private fun setSharedPreferences() {
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        sharedPref?.edit()?.putInt("questions", numQuestions)?.apply()
+    }
+
+    // Set Observer
+    private fun setObserver() {
+        val gameObserver = Observer<GameData> { data ->
+            result = data.result
+            answeredQuestions = data.answeredQuestions
+        }
+
+        //Observe the LiveData
+        model.currentGame.observe(activity as AppCompatActivity, gameObserver)
     }
 }
