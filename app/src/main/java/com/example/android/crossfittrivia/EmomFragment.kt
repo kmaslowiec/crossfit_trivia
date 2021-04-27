@@ -21,8 +21,8 @@ class EmomFragment : Fragment() {
 
     private lateinit var binding: FragmentEmomBinding
     private var questions: MutableList<Question> = QuestionsList.questions
-    private lateinit var currentQuestion: Question
-    private lateinit var answers: MutableList<String>
+    lateinit var currentQuestion: Question
+    lateinit var answers: MutableList<String>
     private var questionIndex = 0
     private var result = 0
     private var answeredQuestions = 0
