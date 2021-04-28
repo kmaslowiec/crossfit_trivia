@@ -6,18 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.android.crossfittrivia.databinding.FragmentResultsBinding
 
 
 class ResultsFragment : Fragment() {
+    private lateinit var binding: FragmentResultsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.results_title)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_results, container, false)
-    }
+        binding = FragmentResultsBinding.inflate(inflater)
 
+        return binding.root
+    }
 }

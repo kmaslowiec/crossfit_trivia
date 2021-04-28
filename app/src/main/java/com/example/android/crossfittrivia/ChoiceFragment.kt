@@ -19,7 +19,7 @@ class ChoiceFragment : Fragment() {
 
         binding = FragmentChoiceBinding.inflate(inflater)
 
-        emomButton(binding)
+        emomButton()
 
         // Inflate the layout for this fragment
         return binding.root
@@ -28,7 +28,7 @@ class ChoiceFragment : Fragment() {
     /*
 * Init to_emom_button
  */
-    private fun emomButton(binding: FragmentChoiceBinding) {
+    private fun emomButton() {
         binding.toEmomButton.setOnClickListener { view ->
 
             view.findNavController()

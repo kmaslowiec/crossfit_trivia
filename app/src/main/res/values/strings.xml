@@ -16,18 +16,20 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="emom_title">EMOM</string>
     <string name="question_pic_desc">Question picture</string>
+    <string name="submit_text_button">Submit</string>
     <!--radio  buttons-->
     <string name="first_radiobutton_tool_text">First Radio Button</string>
     <string name="second_radiobutton_tool_text">Second Radio Button</string>
     <string name="third_radiobutton_tool_text">Third Radio Button</string>
     <string name="fourth_radiobutton_tool_text">Fourth Radio Button</string>
-    <string name="submit_text_button">Submit</string>
 
     <!--NoRepFragment-->
     <string name="no_rep_title">No Rep</string>
     <string name="results_title">Results</string>
     <string name="back_no_rep_button">Back to Game</string>
 
-    <!--SharedPreferences-->
-    <string name="questions">questions</string>
+    <!--ResultFragment-->
+    <string name="score">Score</string>
+    <string name="great_success">Great Success</string>
+    <string name="play_again">Play Again</string>
 </resources>

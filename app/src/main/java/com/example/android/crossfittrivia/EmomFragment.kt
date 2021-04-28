@@ -21,6 +21,8 @@ class EmomFragment : Fragment() {
 
     private lateinit var binding: FragmentEmomBinding
     private var questions: MutableList<Question> = QuestionsList.questions
+
+    //field that are used by DataBinding cannot be private
     lateinit var currentQuestion: Question
     lateinit var answers: MutableList<String>
     private var questionIndex = 0

@@ -23,4 +23,17 @@
         <!--<item name="android:textAlignment">center</item>-->
         <item name="android:textSize">@dimen/text_button</item>
     </style>
+
+    <style name="label_big">
+        <item name="android:fontFamily">@font/roboto_mono_bold</item>
+        <item name="android:layout_marginStart">@dimen/view_start_margin</item>
+        <item name="android:layout_marginEnd">@dimen/view_margin_end</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:paddingTop">@dimen/top_bottom_padding_button</item>
+        <item name="android:paddingBottom">@dimen/top_bottom_padding_button</item>
+        <item name="android:gravity">center</item>
+        <!--<item name="android:textAlignment">center</item>-->
+        <item name="android:textSize">@dimen/text_button</item>
+    </style>
 </resources>
