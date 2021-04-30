@@ -66,7 +66,7 @@ class EmomFragment : Fragment() {
             val checkedId = binding.questionsRadioButton.checkedRadioButtonId
             answeredQuestions++
             model.currentGame.value = GameData(answeredQuestions, result)
-            Log.i("In button", answeredQuestions.toString())
+
             // Do nothing if nothing is checked (id == -1)
             if (-1 != checkedId) {
                 var answerIndex = 0
@@ -83,7 +83,6 @@ class EmomFragment : Fragment() {
                     result++
 
                     model.currentGame.value = GameData(answeredQuestions, result)
-                    Log.i("result", result.toString())
 
                     // Advance to the next question
                     if (answeredQuestions < numQuestions) {

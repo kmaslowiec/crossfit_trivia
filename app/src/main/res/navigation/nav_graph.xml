@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/resultsFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
         android:id="@+id/startFragment"
@@ -52,5 +52,12 @@
         android:id="@+id/resultsFragment"
         android:name="com.example.android.crossfittrivia.ResultsFragment"
         android:label="fragment_results"
-        tools:layout="@layout/fragment_results" />
+        tools:layout="@layout/fragment_results" >
+        <action
+            android:id="@+id/action_resultsFragment_to_emomFragment"
+            app:destination="@id/emomFragment" />
+        <action
+            android:id="@+id/action_resultsFragment_to_choiceFragment"
+            app:destination="@id/choiceFragment" />
+    </fragment>
 </navigation>

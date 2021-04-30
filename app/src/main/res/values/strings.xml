@@ -32,4 +32,5 @@
     <string name="score">Score</string>
     <string name="great_success">Great Success</string>
     <string name="play_again">Play Again</string>
+    <string name="score_text">"Score: %d"</string>
 </resources>

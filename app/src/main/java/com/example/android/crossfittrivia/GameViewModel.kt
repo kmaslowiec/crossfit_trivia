@@ -10,7 +10,9 @@ class GameViewModel : ViewModel() {
 
     val currentGame: MutableLiveData<GameData> by lazy { MutableLiveData<GameData>() }
 
+    companion object{
 
+    }
 }
 
 
