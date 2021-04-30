@@ -2,7 +2,6 @@ package com.example.android.crossfittrivia
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,14 +52,14 @@ class EmomFragment : Fragment() {
         // Bind this fragment class to the layout
         binding.game = this
 
-        submitButtonAction()
+        initSubmitButton()
 
         // Inflate the layout for this fragment
         return binding.root
     }
 
     // Set the onClickListener for the submitButton
-    private fun submitButtonAction() {
+    private fun initSubmitButton() {
         binding.submitGameButton.setOnClickListener @Suppress("UNUSED_ANONYMOUS_PARAMETER")
         { view: View ->
             val checkedId = binding.questionsRadioButton.checkedRadioButtonId

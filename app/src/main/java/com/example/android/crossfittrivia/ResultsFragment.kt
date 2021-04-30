@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -31,13 +30,11 @@ class ResultsFragment : Fragment() {
 
         setObserver()
 
+        // Show results in the scoreText view
         binding.scoreText.text = resources.getString(R.string.score_text, result)
 
-        binding.againButton.setOnClickListener { view->
-            model.currentGame.value = GameData(0,0)
-            view.findNavController().navigate(ResultsFragmentDirections.actionResultsFragmentToEmomFragment())
-        }
-
+        initPlayAgainButton()
+        initChooseGameButton()
 
         return binding.root
     }
@@ -52,5 +49,24 @@ class ResultsFragment : Fragment() {
 
         //Observe the LiveData
         model.currentGame.observe(activity as AppCompatActivity, gameObserver)
+    }
+
+    // Init the PlayAgain button
+    private fun initPlayAgainButton() {
+        binding.againButton.setOnClickListener { view ->
+            resetStats()
+            view.findNavController().navigate(ResultsFragmentDirections.actionResultsFragmentToEmomFragment())
+        }
+    }
+
+    private fun initChooseGameButton() {
+        binding.chooseGameButton.setOnClickListener { view ->
+            resetStats()
+            view.findNavController().navigate(ResultsFragmentDirections.actionResultsFragmentToChoiceFragment())
+        }
+    }
+
+    private fun resetStats() {
+        model.currentGame.value = GameData(0, 0)
     }
 }

@@ -17,7 +17,7 @@
     <!--EMOM Button-->
     <TextView
         android:id="@+id/to_emom_button"
-        style="@style/choice_button"
+        style="@style/my_button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_choice_button"
         android:text="@string/emomButton" />
@@ -32,7 +32,7 @@
     <!--AMRAP Button-->
     <TextView
         android:id="@+id/to_amrap_button"
-        style="@style/choice_button"
+        style="@style/my_button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_choice_button"
         android:text="@string/amrapButton" />
@@ -47,7 +47,7 @@
     <!--Chipper Button-->
     <TextView
         android:id="@+id/to_chipper_button"
-        style="@style/choice_button"
+        style="@style/my_button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_choice_button"
         android:text="@string/chipperButton" />

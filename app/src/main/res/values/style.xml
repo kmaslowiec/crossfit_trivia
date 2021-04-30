@@ -10,7 +10,7 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="choice_button">
+    <style name="my_button">
         <item name="android:background">@drawable/shape_choice_button</item>
         <item name="android:fontFamily">@font/roboto_mono_bold</item>
         <item name="android:layout_marginStart">@dimen/view_start_margin</item>

@@ -52,7 +52,7 @@
         android:id="@+id/resultsFragment"
         android:name="com.example.android.crossfittrivia.ResultsFragment"
         android:label="fragment_results"
-        tools:layout="@layout/fragment_results" >
+        tools:layout="@layout/fragment_results">
         <action
             android:id="@+id/action_resultsFragment_to_emomFragment"
             app:destination="@id/emomFragment" />
