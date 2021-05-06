@@ -25,9 +25,8 @@ class ChoiceFragment : Fragment() {
         return binding.root
     }
 
-    /*
-* Init to_emom_button
- */
+
+    // Init toEmomButton
     private fun emomButton() {
         binding.toEmomButton.setOnClickListener { view ->
 

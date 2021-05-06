@@ -59,6 +59,7 @@ class ResultsFragment : Fragment() {
         }
     }
 
+    // Init the chooseGameButton button
     private fun initChooseGameButton() {
         binding.chooseGameButton.setOnClickListener { view ->
             resetStats()
@@ -66,6 +67,7 @@ class ResultsFragment : Fragment() {
         }
     }
 
+    // Reset stats for new game
     private fun resetStats() {
         model.currentGame.value = GameData(0, 0)
     }

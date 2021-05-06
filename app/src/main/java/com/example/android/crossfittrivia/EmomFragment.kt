@@ -99,15 +99,15 @@ class EmomFragment : Fragment() {
         }
     }
 
-    //Randomize question before set them up
+    // Randomize question before set them up
     private fun randomizeQuestions() {
         questions.shuffle()
         questionIndex = 0
         setQuestion()
     }
 
-    // Sets the question and randomizes the answers.  This only changes the data, not the UI.
-    // Calling invalidateAll on the FragmentGameBinding updates the data.
+    /* Sets the question and randomizes the answers.  This only changes the data, not the UI.
+     * Calling invalidateAll on the FragmentGameBinding updates the data.*/
     private fun setQuestion() {
         currentQuestion = questions[questionIndex]
         // randomize the answers into a copy of the array
@@ -116,7 +116,7 @@ class EmomFragment : Fragment() {
         answers.shuffle()
     }
 
-    //Set SharedPreferences for num of question
+    // Set SharedPreferences for num of question
     private fun setSharedPreferences() {
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
         sharedPref?.edit()?.putInt("questions", numQuestions)?.apply()
@@ -129,7 +129,7 @@ class EmomFragment : Fragment() {
             answeredQuestions = data.answeredQuestions
         }
 
-        //Observe the LiveData
+        // Observe the LiveData
         model.currentGame.observe(activity as AppCompatActivity, gameObserver)
     }
 }

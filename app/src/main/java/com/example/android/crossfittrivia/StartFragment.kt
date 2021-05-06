@@ -17,21 +17,16 @@ class StartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        /**
-         * Setup view binding for the Fragment
-         */
+        //Setup viewBinding for the Fragment
         binding = FragmentStartBinding.inflate(inflater)
 
-        //Init to_choice_button
         startButton()
 
         // Inflate the layout for this fragment
         return binding.root
     }
 
-    /*
-    * Init to_choice_button
-     */
+    // Init toChoiceButton
     private fun startButton() {
         binding.toChoiceButton.setOnClickListener { view ->
             /**
