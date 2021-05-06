@@ -20,4 +20,5 @@
 
     <!--image-->
     <dimen name="image_header_height">192dp</dimen>
+    <dimen name="video_height">300dp</dimen>
 </resources>

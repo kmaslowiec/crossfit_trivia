@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.example.android.crossfittrivia.data.GameData
+import com.example.android.crossfittrivia.data.GameStats
 import com.example.android.crossfittrivia.data.Question
 import com.example.android.crossfittrivia.data.QuestionsList
 import com.example.android.crossfittrivia.databinding.FragmentEmomBinding
@@ -64,7 +64,7 @@ class EmomFragment : Fragment() {
         { view: View ->
             val checkedId = binding.questionsRadioButton.checkedRadioButtonId
             answeredQuestions++
-            model.currentGame.value = GameData(answeredQuestions, result)
+            model.currentGame.value = GameStats(answeredQuestions, result)
 
             // Do nothing if nothing is checked (id == -1)
             if (-1 != checkedId) {
@@ -81,7 +81,7 @@ class EmomFragment : Fragment() {
                     questionIndex++
                     result++
 
-                    model.currentGame.value = GameData(answeredQuestions, result)
+                    model.currentGame.value = GameStats(answeredQuestions, result)
 
                     // Advance to the next question
                     if (answeredQuestions < numQuestions) {
@@ -124,7 +124,7 @@ class EmomFragment : Fragment() {
 
     // Set Observer
     private fun setObserver() {
-        val gameObserver = Observer<GameData> { data ->
+        val gameObserver = Observer<GameStats> { data ->
             result = data.result
             answeredQuestions = data.answeredQuestions
         }

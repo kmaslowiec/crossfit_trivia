@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.example.android.crossfittrivia.data.GameData
+import com.example.android.crossfittrivia.data.GameStats
 import com.example.android.crossfittrivia.databinding.FragmentResultsBinding
 
 
@@ -42,7 +42,7 @@ class ResultsFragment : Fragment() {
 
     // Set Observer
     private fun setObserver() {
-        val gameObserver = Observer<GameData> { data ->
+        val gameObserver = Observer<GameStats> { data ->
             result = data.result
             answeredQuestions = data.answeredQuestions
         }
@@ -69,6 +69,6 @@ class ResultsFragment : Fragment() {
 
     // Reset stats for new game
     private fun resetStats() {
-        model.currentGame.value = GameData(0, 0)
+        model.currentGame.value = GameStats(0, 0)
     }
 }

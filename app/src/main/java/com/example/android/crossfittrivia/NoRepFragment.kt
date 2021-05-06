@@ -1,17 +1,20 @@
 package com.example.android.crossfittrivia
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
+import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.example.android.crossfittrivia.data.GameData
+import com.example.android.crossfittrivia.data.GameStats
 import com.example.android.crossfittrivia.databinding.FragmentNoRepBinding
 import java.util.concurrent.TimeUnit
 
@@ -23,6 +26,7 @@ class NoRepFragment : Fragment() {
     private lateinit var timer: CountDownTimer
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,6 +42,12 @@ class NoRepFragment : Fragment() {
 
         returnButton()
 
+        val myWebVideo : WebView = binding.video
+
+        val webSettings : WebSettings = myWebVideo.settings
+        webSettings.javaScriptEnabled = true
+
+        myWebVideo.loadUrl("https://www.youtube.com/embed/TU8QYVW0gDU")
         return binding.root
     }
 
@@ -49,7 +59,7 @@ class NoRepFragment : Fragment() {
 
     // Set Observer
     private fun setObserver() {
-        val gameObserver = Observer<GameData> { data ->
+        val gameObserver = Observer<GameStats> { data ->
             answeredQuestions = data.answeredQuestions
         }
 
