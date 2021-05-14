@@ -30,7 +30,7 @@ class EmomFragment : Fragment() {
     private val model: GameViewModel by activityViewModels()
 
     //setup number of questions
-    private val numQuestions = 10
+    private val numQuestions = 3
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/choiceFragment"
         android:name="com.example.android.crossfittrivia.ChoiceFragment"
-        android:label="@string/temp_game_name"
+        android:label="@string/choice_title"
         tools:layout="@layout/fragment_choice">
         <action
             android:id="@+id/action_choiceFragment_to_emomFragment"
