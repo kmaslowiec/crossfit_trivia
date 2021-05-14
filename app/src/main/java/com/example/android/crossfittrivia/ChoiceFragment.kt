@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.android.crossfittrivia.databinding.FragmentChoiceBinding
+import com.example.android.crossfittrivia.utils.Mode
 
 class ChoiceFragment : Fragment() {
 
@@ -34,7 +35,7 @@ class ChoiceFragment : Fragment() {
         binding.toEmomButton.setOnClickListener { view ->
 
             view.findNavController()
-                .navigate(ChoiceFragmentDirections.actionChoiceFragmentToEmomFragment())
+                .navigate(ChoiceFragmentDirections.actionChoiceFragmentToEmomFragment(Mode.EMOM))
         }
     }
 }

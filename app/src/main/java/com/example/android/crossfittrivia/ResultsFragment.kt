@@ -9,8 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.example.android.crossfittrivia.data.GameStats
+import com.example.android.crossfittrivia.utils.GameStats
 import com.example.android.crossfittrivia.databinding.FragmentResultsBinding
+import com.example.android.crossfittrivia.utils.Mode
 
 
 class ResultsFragment : Fragment() {
@@ -55,7 +56,7 @@ class ResultsFragment : Fragment() {
     private fun initPlayAgainButton() {
         binding.againButton.setOnClickListener { view ->
             resetStats()
-            view.findNavController().navigate(ResultsFragmentDirections.actionResultsFragmentToEmomFragment())
+            view.findNavController().navigate(ResultsFragmentDirections.actionResultsFragmentToEmomFragment(Mode.EMOM))
         }
     }
 

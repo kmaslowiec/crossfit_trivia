@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_emomFragment_to_resultsFragment"
             app:destination="@id/resultsFragment" />
+        <argument
+            android:name="mode"
+            app:argType="com.example.android.crossfittrivia.utils.Mode" />
     </fragment>
     <fragment
         android:id="@+id/noRepFragment"

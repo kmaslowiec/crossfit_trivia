@@ -2,7 +2,6 @@ package com.example.android.crossfittrivia
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Typeface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -16,7 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.example.android.crossfittrivia.data.*
+import com.example.android.crossfittrivia.utils.*
 import com.example.android.crossfittrivia.databinding.FragmentNoRepBinding
 import java.util.concurrent.TimeUnit
 
@@ -104,7 +103,7 @@ class NoRepFragment : Fragment() {
                 binding.returnButton.text = resources.getString(R.string.return_button)
                 binding.returnButton.setOnClickListener {
                     if (answeredQuestions < getQuestionLimit()) {
-                        view?.findNavController()?.navigate(NoRepFragmentDirections.actionNoRepFragmentToEmomFragment())
+                        view?.findNavController()?.navigate(NoRepFragmentDirections.actionNoRepFragmentToEmomFragment(Mode.EMOM))
                     } else {
                         view?.findNavController()?.navigate(NoRepFragmentDirections.actionNoRepFragmentToResultsFragment())
                     }

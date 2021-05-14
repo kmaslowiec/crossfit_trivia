@@ -2,6 +2,7 @@ package com.example.android.crossfittrivia
 
 import android.content.Context
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.example.android.crossfittrivia.data.GameStats
-import com.example.android.crossfittrivia.data.Question
-import com.example.android.crossfittrivia.data.QuestionsList
 import com.example.android.crossfittrivia.databinding.FragmentEmomBinding
+import com.example.android.crossfittrivia.utils.GameStats
+import com.example.android.crossfittrivia.utils.Mode
+import com.example.android.crossfittrivia.utils.Question
+import com.example.android.crossfittrivia.utils.QuestionsList
 
 class EmomFragment : Fragment() {
 
@@ -54,9 +56,9 @@ class EmomFragment : Fragment() {
 
         initSubmitButton()
 
-        when (currentQuestion.hasPic){
+        when (currentQuestion.hasPic) {
             false -> {
-               binding.questionImage.visibility = View.GONE
+                binding.questionImage.visibility = View.GONE
             }
         }
 
@@ -137,5 +139,24 @@ class EmomFragment : Fragment() {
 
         // Observe the LiveData
         model.currentGame.observe(activity as AppCompatActivity, gameObserver)
+    }
+
+    private fun timer(mode: Mode) {
+
+        val timePeriod : Long  = when (mode){
+            Mode.AMRAP -> 5000L
+            Mode.CHIPPER -> 10000L
+            Mode.EMOM -> 0L
+        }
+
+        val timer = object : CountDownTimer(timePeriod, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+
+            }
+
+            override fun onFinish() {
+                view?.findNavController()?.navigate(NoRepFragmentDirections.actionNoRepFragmentToResultsFragment())
+            }
+        }.start()
     }
 }

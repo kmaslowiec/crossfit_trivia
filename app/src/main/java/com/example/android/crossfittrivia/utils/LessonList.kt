@@ -1,4 +1,4 @@
-package com.example.android.crossfittrivia.data
+package com.example.android.crossfittrivia.utils
 
 class LessonList {
 

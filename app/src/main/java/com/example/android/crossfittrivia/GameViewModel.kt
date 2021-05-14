@@ -2,7 +2,7 @@ package com.example.android.crossfittrivia
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.crossfittrivia.data.GameStats
+import com.example.android.crossfittrivia.utils.GameStats
 
 class GameViewModel : ViewModel() {
 
