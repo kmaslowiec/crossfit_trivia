@@ -29,7 +29,7 @@
 
         <TextView
             android:id="@+id/textView"
-            style="@style/label_choice_style"
+            style="@style/label_big"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{game.currentQuestion.text}"
@@ -38,7 +38,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/questionImage"
-            tools:text="@string/lorem_ipsum" />
+            tools:text="@string/question_text" />
 
         <RadioGroup
             android:id="@+id/questions_radio_button"

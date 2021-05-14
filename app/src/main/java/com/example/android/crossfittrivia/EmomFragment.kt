@@ -30,7 +30,7 @@ class EmomFragment : Fragment() {
     private val model: GameViewModel by activityViewModels()
 
     //setup number of questions
-    private val numQuestions = 3
+    private val numQuestions = 10
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +53,12 @@ class EmomFragment : Fragment() {
         binding.game = this
 
         initSubmitButton()
+
+        when (currentQuestion.hasPic){
+            false -> {
+               binding.questionImage.visibility = View.GONE
+            }
+        }
 
         // Inflate the layout for this fragment
         return binding.root
@@ -93,7 +99,7 @@ class EmomFragment : Fragment() {
                         view.findNavController().navigate(EmomFragmentDirections.actionEmomFragmentToResultsFragment())
                     }
                 } else {
-                    view.findNavController().navigate(EmomFragmentDirections.actionEmomFragmentToNoRepFragment())
+                    view.findNavController().navigate(EmomFragmentDirections.actionEmomFragmentToNoRepFragment(currentQuestion.text))
                 }
             }
         }

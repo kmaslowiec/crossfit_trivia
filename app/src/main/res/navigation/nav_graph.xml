@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/noRepFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
         android:id="@+id/startFragment"
@@ -47,6 +47,10 @@
         <action
             android:id="@+id/action_noRepFragment_to_resultsFragment"
             app:destination="@id/resultsFragment" />
+        <argument
+            android:name="question"
+            app:argType="string"
+            android:defaultValue="empty" />
     </fragment>
     <fragment
         android:id="@+id/resultsFragment"

@@ -2,8 +2,10 @@ package com.example.android.crossfittrivia
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Typeface
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.example.android.crossfittrivia.data.GameStats
+import com.example.android.crossfittrivia.data.*
 import com.example.android.crossfittrivia.databinding.FragmentNoRepBinding
 import java.util.concurrent.TimeUnit
 
@@ -24,6 +26,8 @@ class NoRepFragment : Fragment() {
     private val model: GameViewModel by activityViewModels()
     private var answeredQuestions = 0
     private lateinit var timer: CountDownTimer
+    private val lessons : MutableList<Lesson> = LessonList.lessons
+    private var questions: MutableList<Question> = QuestionsList.questions
 
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -31,7 +35,6 @@ class NoRepFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         //Set fragment's title
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.no_rep_title)
 
@@ -42,12 +45,28 @@ class NoRepFragment : Fragment() {
 
         returnButton()
 
-        val myWebVideo : WebView = binding.video
+        val args = NoRepFragmentArgs.fromBundle(requireArguments())
 
-        val webSettings : WebSettings = myWebVideo.settings
-        webSettings.javaScriptEnabled = true
+        Log.i("ARGUMENT FROM EMOM", args.question)
 
-        myWebVideo.loadUrl("https://www.youtube.com/embed/TU8QYVW0gDU")
+        val currentLesson = lessons.find { a -> a.question == args.question }
+
+        when (currentLesson?.hasVideo){
+                null -> {
+                binding.video.visibility = View.GONE
+                binding.explText.visibility = View.GONE
+                binding.titleText.text = resources.getString(R.string.lesson_not_found)
+            }
+            true -> {
+                binding.explText.visibility = View.GONE
+                binding.titleText.text = currentLesson.content
+                webVideo(currentLesson.url)
+            }
+            else -> {
+                binding.video.visibility = View.GONE
+                binding.explText.text = currentLesson.content
+            }
+        }
         return binding.root
     }
 
@@ -92,5 +111,16 @@ class NoRepFragment : Fragment() {
                 }
             }
         }.start()
+    }
+
+    // Init WebVideo
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun webVideo(url : String){
+        val myWebVideo : WebView = binding.video
+
+        val webSettings : WebSettings = myWebVideo.settings
+        webSettings.javaScriptEnabled = true
+
+        myWebVideo.loadUrl(url)
     }
 }

@@ -25,13 +25,17 @@
 
     <!--NoRepFragment-->
     <string name="no_rep_title">No Rep</string>
-    <string name="results_title">Results</string>
     <string name="return_button">Back to Game</string>
+    <string name="lesson_not_found">Lesson not found</string>
+    <string name="title">Title</string>
 
     <!--ResultFragment-->
+    <string name="results_title">Results</string>
     <string name="score">Score</string>
     <string name="great_success">Great Success</string>
     <string name="play_again">Play Again</string>
     <string name="score_text">"Score: %d"</string>
     <string name="choose_game">Choose Game</string>
+    <string name="question_text">Some question</string>
+
 </resources>

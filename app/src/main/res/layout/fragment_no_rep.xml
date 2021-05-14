@@ -8,6 +8,20 @@
     tools:context=".NoRepFragment">
 
 
+    <TextView
+        android:id="@+id/title_text"
+        style="@style/label_big"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="@string/title" />
+
+    <TextView
+        android:id="@+id/expl_text"
+        style="@style/label_choice_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lorem_ipsum" />
+
     <WebView
         android:id="@+id/video"
         android:layout_width="match_parent"
