@@ -23,19 +23,37 @@ class ChoiceFragment : Fragment() {
 
         binding = FragmentChoiceBinding.inflate(inflater)
 
-        emomButton()
+        initEmomButton()
+        initAmrapButton()
+        initChipperButton()
 
         // Inflate the layout for this fragment
         return binding.root
     }
 
-
-    // Init toEmomButton
-    private fun emomButton() {
+    private fun initEmomButton() {
         binding.toEmomButton.setOnClickListener { view ->
 
             view.findNavController()
                 .navigate(ChoiceFragmentDirections.actionChoiceFragmentToEmomFragment(Mode.EMOM))
+        }
+    }
+
+    private fun initAmrapButton() {
+        binding.toAmrapButton.setOnClickListener { view ->
+            view.findNavController().navigate(
+                ChoiceFragmentDirections
+                    .actionChoiceFragmentToEmomFragment(Mode.AMRAP)
+            )
+        }
+    }
+
+    private fun initChipperButton() {
+        binding.toChipperButton.setOnClickListener { view ->
+            view.findNavController().navigate(
+                ChoiceFragmentDirections
+                    .actionChoiceFragmentToEmomFragment(Mode.CHIPPER)
+            )
         }
     }
 }

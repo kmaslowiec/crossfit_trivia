@@ -3,6 +3,7 @@ package com.example.android.crossfittrivia
 import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,6 +61,12 @@ class EmomFragment : Fragment() {
             false -> {
                 binding.questionImage.visibility = View.GONE
             }
+        }
+
+        // Check if we need to start timer
+        val args = EmomFragmentArgs.fromBundle(requireArguments())
+        if (args.mode == Mode.AMRAP || args.mode == Mode.CHIPPER) {
+            timer(args.mode)
         }
 
         // Inflate the layout for this fragment
@@ -142,20 +149,20 @@ class EmomFragment : Fragment() {
     }
 
     private fun timer(mode: Mode) {
-
-        val timePeriod : Long  = when (mode){
-            Mode.AMRAP -> 5000L
+        var timePeriod: Long = when (mode) {
+            Mode.AMRAP -> 2000L
             Mode.CHIPPER -> 10000L
             Mode.EMOM -> 0L
         }
 
-        val timer = object : CountDownTimer(timePeriod, 1000) {
+        object : CountDownTimer(timePeriod, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-
+                timePeriod -= 1000L
+                Log.i("Count", timePeriod.toString())
             }
 
             override fun onFinish() {
-                view?.findNavController()?.navigate(NoRepFragmentDirections.actionNoRepFragmentToResultsFragment())
+                activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.resultsFragment)
             }
         }.start()
     }

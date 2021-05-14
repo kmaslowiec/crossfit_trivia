@@ -52,8 +52,8 @@
             app:destination="@id/resultsFragment" />
         <argument
             android:name="question"
-            app:argType="string"
-            android:defaultValue="empty" />
+            android:defaultValue="empty"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/resultsFragment"

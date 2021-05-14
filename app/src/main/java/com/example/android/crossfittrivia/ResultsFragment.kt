@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.example.android.crossfittrivia.utils.GameStats
 import com.example.android.crossfittrivia.databinding.FragmentResultsBinding
+import com.example.android.crossfittrivia.utils.GameStats
 import com.example.android.crossfittrivia.utils.Mode
 
 

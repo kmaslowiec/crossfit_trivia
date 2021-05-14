@@ -15,8 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.example.android.crossfittrivia.utils.*
 import com.example.android.crossfittrivia.databinding.FragmentNoRepBinding
+import com.example.android.crossfittrivia.utils.*
 import java.util.concurrent.TimeUnit
 
 class NoRepFragment : Fragment() {
@@ -25,7 +25,7 @@ class NoRepFragment : Fragment() {
     private val model: GameViewModel by activityViewModels()
     private var answeredQuestions = 0
     private lateinit var timer: CountDownTimer
-    private val lessons : MutableList<Lesson> = LessonList.lessons
+    private val lessons: MutableList<Lesson> = LessonList.lessons
     private var questions: MutableList<Question> = QuestionsList.questions
 
 
@@ -50,8 +50,8 @@ class NoRepFragment : Fragment() {
 
         val currentLesson = lessons.find { a -> a.question == args.question }
 
-        when (currentLesson?.hasVideo){
-                null -> {
+        when (currentLesson?.hasVideo) {
+            null -> {
                 binding.video.visibility = View.GONE
                 binding.explText.visibility = View.GONE
                 binding.titleText.text = resources.getString(R.string.lesson_not_found)
@@ -114,10 +114,10 @@ class NoRepFragment : Fragment() {
 
     // Init WebVideo
     @SuppressLint("SetJavaScriptEnabled")
-    private fun webVideo(url : String){
-        val myWebVideo : WebView = binding.video
+    private fun webVideo(url: String) {
+        val myWebVideo: WebView = binding.video
 
-        val webSettings : WebSettings = myWebVideo.settings
+        val webSettings: WebSettings = myWebVideo.settings
         webSettings.javaScriptEnabled = true
 
         myWebVideo.loadUrl(url)
