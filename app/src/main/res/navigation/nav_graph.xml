@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/emomFragment"
-        android:name="com.example.android.crossfittrivia.EmomFragment"
+        android:name="com.example.android.crossfittrivia.GameFragment"
         android:label="@string/emom_title"
         tools:layout="@layout/fragment_emom">
         <action

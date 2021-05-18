@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -19,7 +20,7 @@ import com.example.android.crossfittrivia.utils.Mode
 import com.example.android.crossfittrivia.utils.Question
 import com.example.android.crossfittrivia.utils.QuestionsList
 
-class EmomFragment : Fragment() {
+class GameFragment : Fragment() {
 
     private lateinit var binding: FragmentEmomBinding
     private var questions: MutableList<Question> = QuestionsList.questions
@@ -39,10 +40,7 @@ class EmomFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        //Change fragment title
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.emom_title)
-
+        val args = GameFragmentArgs.fromBundle(requireArguments())
         setSharedPreferences()
 
         // Set DataBinding
@@ -57,6 +55,8 @@ class EmomFragment : Fragment() {
 
         initSubmitButton()
 
+        gameMode(args.mode)
+
         when (currentQuestion.hasPic) {
             false -> {
                 binding.questionImage.visibility = View.GONE
@@ -64,9 +64,8 @@ class EmomFragment : Fragment() {
         }
 
         // Check if we need to start timer
-        val args = EmomFragmentArgs.fromBundle(requireArguments())
-        if (args.mode == Mode.AMRAP || args.mode == Mode.CHIPPER) {
-            timer(args.mode)
+        if (args.mode == Mode.AMRAP) {
+            timer()
         }
 
         // Inflate the layout for this fragment
@@ -105,10 +104,10 @@ class EmomFragment : Fragment() {
                         setQuestion()
                         binding.invalidateAll()
                     } else {
-                        view.findNavController().navigate(EmomFragmentDirections.actionEmomFragmentToResultsFragment())
+                        view.findNavController().navigate(GameFragmentDirections.actionEmomFragmentToResultsFragment())
                     }
                 } else {
-                    view.findNavController().navigate(EmomFragmentDirections.actionEmomFragmentToNoRepFragment(currentQuestion.text))
+                    view.findNavController().navigate(GameFragmentDirections.actionEmomFragmentToNoRepFragment(currentQuestion.text))
                 }
             }
         }
@@ -148,22 +147,53 @@ class EmomFragment : Fragment() {
         model.currentGame.observe(activity as AppCompatActivity, gameObserver)
     }
 
-    private fun timer(mode: Mode) {
-        var timePeriod: Long = when (mode) {
-            Mode.AMRAP -> 2000L
-            Mode.CHIPPER -> 10000L
-            Mode.EMOM -> 0L
-        }
+    private fun timer() {
+        var timePeriod: Long = secondsToMill(10)
 
         object : CountDownTimer(timePeriod, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 timePeriod -= 1000L
-                Log.i("Count", timePeriod.toString())
+
+                when (timePeriod){
+                    secondsToMill(7) -> makeToast("7 seconds")
+                }
             }
 
             override fun onFinish() {
                 activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.resultsFragment)
             }
         }.start()
+    }
+
+    // Set the game mode
+    private fun gameMode(mode : Mode){
+        when (mode) {
+            Mode.AMRAP -> {
+                setModeTitle(getString(R.string.amrap_title))
+                makeToast(getString(R.string.amrap_entry_toast))
+            }
+            Mode.EMOM -> {
+                setModeTitle(getString(R.string.emom_title, answeredQuestions+1, numQuestions))
+                if(answeredQuestions==0)makeToast(getString(R.string.emom_toast, numQuestions))
+            }
+            Mode.CHIPPER -> {
+                setModeTitle(getString(R.string.emom_title))
+                makeToast(getString(R.string.chipper_toast))
+            }
+        }
+    }
+
+    // Create and show Toast
+    private fun makeToast(text : String){
+        Toast.makeText(activity, text, Toast.LENGTH_LONG).show()
+    }
+
+    // Change fragment title
+    private fun setModeTitle(title : String){
+        (activity as AppCompatActivity).supportActionBar?.title = title
+    }
+
+    private fun secondsToMill(seconds : Int): Long{
+        return seconds * 1000L
     }
 }
