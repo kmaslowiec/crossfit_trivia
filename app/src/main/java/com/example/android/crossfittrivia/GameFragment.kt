@@ -153,10 +153,7 @@ class GameFragment : Fragment() {
         object : CountDownTimer(timePeriod, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 timePeriod -= 1000L
-
-                when (timePeriod){
-                    secondsToMill(7) -> makeToast("7 seconds")
-                }
+                prepToast(timePeriod)
             }
 
             override fun onFinish() {
@@ -185,12 +182,24 @@ class GameFragment : Fragment() {
 
     // Create and show Toast
     private fun makeToast(text : String){
-        Toast.makeText(activity, text, Toast.LENGTH_LONG).show()
+        Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
     }
 
     // Change fragment title
     private fun setModeTitle(title : String){
         (activity as AppCompatActivity).supportActionBar?.title = title
+    }
+
+    private fun prepToast(timePeriod : Long){
+        when (timePeriod){
+            secondsToMill(40) -> makeToast(getString(R.string.amrap_4_min)) // change to 4 min
+            secondsToMill(30) -> makeToast(getString(R.string.amrap_half_min)) // change to 2,5 min
+            secondsToMill(20) -> makeToast(getString(R.string.amrap_1_min)) // change to 1 min
+            secondsToMill(10) -> makeToast(getString(R.string.amrap_10_sec)) // change to 10 sec
+            secondsToMill(5) -> makeToast(getString(R.string.amrap_3_sec)) // change to 3 sec
+            secondsToMill(4) -> makeToast(getString(R.string.amrap_2_sec)) // change to 2 sec
+            secondsToMill(3) -> makeToast(getString(R.string.amrap_1_sec)) // change to 1 sec
+        }
     }
 
     private fun secondsToMill(seconds : Int): Long{

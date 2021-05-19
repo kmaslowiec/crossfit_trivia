@@ -21,10 +21,17 @@
     <!--Amrap Mode-->
     <string name="amrap_title">AMRAP</string>
     <string name="amrap_entry_toast">You have 5 minutes to Rock It !!!</string>
+    <string name="amrap_4_min">4 minutes left</string>
+    <string name="amrap_half_min">first half is gone, you can do it!!!</string>
+    <string name="amrap_1_min">1 min, don\'t give up</string>
+    <string name="amrap_10_sec">10 seconds</string>
+    <string name="amrap_3_sec">3</string>
+    <string name="amrap_2_sec">2</string>
+    <string name="amrap_1_sec">1</string>
 
     <!--Chipper Mode-->
     <string name="chipper_title">Chipper</string>
-    <string name="chipper_toast">"Answer 10 questions to Nailed it"</string>
+    <string name="chipper_toast">"Do it them all"</string>
 
     <!--Game fragment-->
     <!--radio  buttons-->
