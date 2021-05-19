@@ -90,13 +90,7 @@ class NoRepFragment : Fragment() {
         timer = object : CountDownTimer(5000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
 
-                val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)
-                val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit
-                    .MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))
-
-                val time = "%02d:%02d".format(minutes, seconds)
-
-                binding.returnButton.text = time
+                binding.returnButton.text = TimerUtil.timerDisplay(millisUntilFinished)
             }
 
             override fun onFinish() {

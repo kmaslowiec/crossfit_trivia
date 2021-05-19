@@ -15,10 +15,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.android.crossfittrivia.databinding.FragmentEmomBinding
-import com.example.android.crossfittrivia.utils.GameStats
-import com.example.android.crossfittrivia.utils.Mode
-import com.example.android.crossfittrivia.utils.Question
-import com.example.android.crossfittrivia.utils.QuestionsList
+import com.example.android.crossfittrivia.utils.*
+import java.util.concurrent.TimeUnit
 
 class GameFragment : Fragment() {
 
@@ -153,6 +151,9 @@ class GameFragment : Fragment() {
         object : CountDownTimer(timePeriod, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 timePeriod -= 1000L
+
+                val time = TimerUtil.timerDisplay(millisUntilFinished)
+                setModeTitle(getString(R.string.amrap_title) + time)
                 prepToast(timePeriod)
             }
 
