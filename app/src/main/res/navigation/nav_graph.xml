@@ -22,18 +22,18 @@
         tools:layout="@layout/fragment_choice">
         <action
             android:id="@+id/action_choiceFragment_to_emomFragment"
-            app:destination="@id/emomFragment" />
+            app:destination="@id/gameFragment" />
     </fragment>
     <fragment
-        android:id="@+id/emomFragment"
+        android:id="@+id/gameFragment"
         android:name="com.example.android.crossfittrivia.GameFragment"
         android:label="@string/emom_title"
         tools:layout="@layout/fragment_emom">
         <action
-            android:id="@+id/action_emomFragment_to_noRepFragment"
+            android:id="@+id/action_gameFragment_to_noRepFragment"
             app:destination="@id/noRepFragment" />
         <action
-            android:id="@+id/action_emomFragment_to_resultsFragment"
+            android:id="@+id/action_gameFragment_to_resultsFragment"
             app:destination="@id/resultsFragment" />
         <argument
             android:name="mode"
@@ -47,7 +47,7 @@
         tools:layout="@layout/fragment_no_rep">
         <action
             android:id="@+id/action_noRepFragment_to_emomFragment"
-            app:destination="@id/emomFragment" />
+            app:destination="@id/gameFragment" />
         <action
             android:id="@+id/action_noRepFragment_to_resultsFragment"
             app:destination="@id/resultsFragment" />
@@ -63,7 +63,7 @@
         tools:layout="@layout/fragment_results">
         <action
             android:id="@+id/action_resultsFragment_to_emomFragment"
-            app:destination="@id/emomFragment" />
+            app:destination="@id/gameFragment" />
         <action
             android:id="@+id/action_resultsFragment_to_choiceFragment"
             app:destination="@id/choiceFragment" />

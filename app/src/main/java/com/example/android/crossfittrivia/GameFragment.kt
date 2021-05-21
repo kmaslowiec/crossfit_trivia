@@ -99,11 +99,11 @@ class GameFragment : Fragment() {
                     if (answeredQuestions < numQuestions) {
                         uploadNextQuestion()
                     } else {
-                        view.findNavController().navigate(GameFragmentDirections.actionEmomFragmentToResultsFragment(args.mode))
+                        view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToResultsFragment(args.mode))
                     }
                 } else {
                     if (args.mode == Mode.EMOM) view.findNavController().navigate(
-                        GameFragmentDirections.actionEmomFragmentToNoRepFragment
+                        GameFragmentDirections.actionGameFragmentToNoRepFragment
                             (
                             currentQuestion
                                 .text
@@ -162,7 +162,7 @@ class GameFragment : Fragment() {
             }
 
             override fun onFinish() {
-                Navigation.findNavController(binding.root).navigate(GameFragmentDirections.actionEmomFragmentToResultsFragment(args.mode))
+                Navigation.findNavController(binding.root).navigate(GameFragmentDirections.actionGameFragmentToResultsFragment(args.mode))
             }
         }.start()
     }
