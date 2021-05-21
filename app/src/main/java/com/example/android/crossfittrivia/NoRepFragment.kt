@@ -17,7 +17,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.android.crossfittrivia.databinding.FragmentNoRepBinding
 import com.example.android.crossfittrivia.utils.*
-import java.util.concurrent.TimeUnit
 
 class NoRepFragment : Fragment() {
 

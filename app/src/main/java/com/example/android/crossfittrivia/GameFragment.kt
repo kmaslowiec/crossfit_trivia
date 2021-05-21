@@ -3,7 +3,6 @@ package com.example.android.crossfittrivia
 import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,14 +12,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.android.crossfittrivia.databinding.FragmentEmomBinding
 import com.example.android.crossfittrivia.utils.*
-import java.util.concurrent.TimeUnit
 
 class GameFragment : Fragment() {
 
     private lateinit var binding: FragmentEmomBinding
+    private lateinit var args: GameFragmentArgs
     private var questions: MutableList<Question> = QuestionsList.questions
 
     //field that are used by DataBinding cannot be private
@@ -32,13 +32,13 @@ class GameFragment : Fragment() {
     private val model: GameViewModel by activityViewModels()
 
     //setup number of questions
-    private val numQuestions = 3
+    private var numQuestions = 3
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val args = GameFragmentArgs.fromBundle(requireArguments())
+        args = GameFragmentArgs.fromBundle(requireArguments())
         setSharedPreferences()
 
         // Set DataBinding
@@ -51,9 +51,9 @@ class GameFragment : Fragment() {
         // Bind this fragment class to the layout
         binding.game = this
 
-        initSubmitButton()
-
         gameMode(args.mode)
+
+        initSubmitButton()
 
         when (currentQuestion.hasPic) {
             false -> {
@@ -97,15 +97,19 @@ class GameFragment : Fragment() {
 
                     // Advance to the next question
                     if (answeredQuestions < numQuestions) {
-
-                        currentQuestion = questions[questionIndex]
-                        setQuestion()
-                        binding.invalidateAll()
+                        uploadNextQuestion()
                     } else {
-                        view.findNavController().navigate(GameFragmentDirections.actionEmomFragmentToResultsFragment())
+                        view.findNavController().navigate(GameFragmentDirections.actionEmomFragmentToResultsFragment(args.mode))
                     }
                 } else {
-                    view.findNavController().navigate(GameFragmentDirections.actionEmomFragmentToNoRepFragment(currentQuestion.text))
+                    if (args.mode == Mode.EMOM) view.findNavController().navigate(
+                        GameFragmentDirections.actionEmomFragmentToNoRepFragment
+                            (
+                            currentQuestion
+                                .text
+                        )
+                    )
+                    uploadNextQuestion()
                 }
             }
         }
@@ -158,21 +162,22 @@ class GameFragment : Fragment() {
             }
 
             override fun onFinish() {
-                activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.resultsFragment)
+                Navigation.findNavController(binding.root).navigate(GameFragmentDirections.actionEmomFragmentToResultsFragment(args.mode))
             }
         }.start()
     }
 
     // Set the game mode
-    private fun gameMode(mode : Mode){
+    private fun gameMode(mode: Mode) {
         when (mode) {
             Mode.AMRAP -> {
                 setModeTitle(getString(R.string.amrap_title))
+                numQuestions = 1000
                 makeToast(getString(R.string.amrap_entry_toast))
             }
             Mode.EMOM -> {
-                setModeTitle(getString(R.string.emom_title, answeredQuestions+1, numQuestions))
-                if(answeredQuestions==0)makeToast(getString(R.string.emom_toast, numQuestions))
+                setModeTitle(getString(R.string.emom_title, answeredQuestions + 1, numQuestions))
+                if (answeredQuestions == 0) makeToast(getString(R.string.emom_toast, numQuestions))
             }
             Mode.CHIPPER -> {
                 setModeTitle(getString(R.string.emom_title))
@@ -182,17 +187,17 @@ class GameFragment : Fragment() {
     }
 
     // Create and show Toast
-    private fun makeToast(text : String){
+    private fun makeToast(text: String) {
         Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
     }
 
     // Change fragment title
-    private fun setModeTitle(title : String){
+    private fun setModeTitle(title: String) {
         (activity as AppCompatActivity).supportActionBar?.title = title
     }
 
-    private fun prepToast(timePeriod : Long){
-        when (timePeriod){
+    private fun prepToast(timePeriod: Long) {
+        when (timePeriod) {
             secondsToMill(40) -> makeToast(getString(R.string.amrap_4_min)) // change to 4 min
             secondsToMill(30) -> makeToast(getString(R.string.amrap_half_min)) // change to 2,5 min
             secondsToMill(20) -> makeToast(getString(R.string.amrap_1_min)) // change to 1 min
@@ -203,7 +208,14 @@ class GameFragment : Fragment() {
         }
     }
 
-    private fun secondsToMill(seconds : Int): Long{
+    private fun secondsToMill(seconds: Int): Long {
         return seconds * 1000L
+    }
+
+    // Uploads next question
+    private fun uploadNextQuestion() {
+        currentQuestion = questions[questionIndex]
+        setQuestion()
+        binding.invalidateAll()
     }
 }

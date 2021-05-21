@@ -1,6 +1,7 @@
 package com.example.android.crossfittrivia
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.android.crossfittrivia.databinding.FragmentResultsBinding
 import com.example.android.crossfittrivia.utils.GameStats
-import com.example.android.crossfittrivia.utils.Mode
-
 
 class ResultsFragment : Fragment() {
     private var answeredQuestions: Int = 0
@@ -56,7 +55,14 @@ class ResultsFragment : Fragment() {
     private fun initPlayAgainButton() {
         binding.againButton.setOnClickListener { view ->
             resetStats()
-            view.findNavController().navigate(ResultsFragmentDirections.actionResultsFragmentToEmomFragment(Mode.EMOM))
+            val args = GameFragmentArgs.fromBundle(requireArguments())
+            Log.i("MODE IN RESULT ", args.mode.toString())
+            view.findNavController().navigate(ResultsFragmentDirections.actionResultsFragmentToEmomFragment(args.mode))
+            /*when(args.mode){
+                Mode.EMOM -> view.findNavController().navigate(ResultsFragmentDirections.actionResultsFragmentToEmomFragment(Mode.EMOM))
+                Mode.AMRAP -> view.findNavController().navigate(ResultsFragmentDirections.actionResultsFragmentToEmomFragment(Mode.AMRAP))
+                Mode.CHIPPER -> view.findNavController().navigate(ResultsFragmentDirections.actionResultsFragmentToEmomFragment(Mode.CHIPPER))
+            }*/
         }
     }
 

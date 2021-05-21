@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/startFragment">
+    app:startDestination="@id/choiceFragment">
 
     <fragment
         android:id="@+id/startFragment"
@@ -37,7 +37,8 @@
             app:destination="@id/resultsFragment" />
         <argument
             android:name="mode"
-            app:argType="com.example.android.crossfittrivia.utils.Mode" />
+            app:argType="com.example.android.crossfittrivia.utils.Mode"
+            android:defaultValue="EMOM" />
     </fragment>
     <fragment
         android:id="@+id/noRepFragment"
@@ -66,5 +67,9 @@
         <action
             android:id="@+id/action_resultsFragment_to_choiceFragment"
             app:destination="@id/choiceFragment" />
+        <argument
+            android:name="mode"
+            app:argType="com.example.android.crossfittrivia.utils.Mode"
+            android:defaultValue="EMOM" />
     </fragment>
 </navigation>
