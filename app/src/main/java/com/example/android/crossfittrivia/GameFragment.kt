@@ -14,12 +14,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import com.example.android.crossfittrivia.databinding.FragmentEmomBinding
+import com.example.android.crossfittrivia.databinding.FragmentGameBinding
 import com.example.android.crossfittrivia.utils.*
+import java.util.*
 
 class GameFragment : Fragment() {
 
-    private lateinit var binding: FragmentEmomBinding
+    private lateinit var binding: FragmentGameBinding
     private lateinit var args: GameFragmentArgs
     private var questions: MutableList<Question> = QuestionsList.questions
 
@@ -42,7 +43,7 @@ class GameFragment : Fragment() {
         setSharedPreferences()
 
         // Set DataBinding
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_emom, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game, container, false)
 
         setObserver()
 
@@ -59,11 +60,6 @@ class GameFragment : Fragment() {
             false -> {
                 binding.questionImage.visibility = View.GONE
             }
-        }
-
-        // Check if we need to start timer
-        if (args.mode == Mode.AMRAP) {
-            timer()
         }
 
         // Inflate the layout for this fragment
@@ -167,11 +163,24 @@ class GameFragment : Fragment() {
         }.start()
     }
 
+    private fun stopwatch() {
+        var num: Long = 0
+        val timer = Timer()
+        val tt: TimerTask = object : TimerTask() {
+            override fun run() {
+                num += 1000L
+                activity?.runOnUiThread { setModeTitle(getString(R.string.chipper_title) + TimerUtil.timerDisplay(num)) }
+            }
+        }
+        timer.schedule(tt, 0L, 1000)
+    }
+
     // Set the game mode
     private fun gameMode(mode: Mode) {
         when (mode) {
             Mode.AMRAP -> {
-                setModeTitle(getString(R.string.amrap_title))
+                timer()
+                //setModeTitle(getString(R.string.amrap_title))
                 numQuestions = 1000
                 makeToast(getString(R.string.amrap_entry_toast))
             }
@@ -180,7 +189,8 @@ class GameFragment : Fragment() {
                 if (answeredQuestions == 0) makeToast(getString(R.string.emom_toast, numQuestions))
             }
             Mode.CHIPPER -> {
-                setModeTitle(getString(R.string.emom_title))
+                stopwatch()
+                //setModeTitle(getString(R.string.emom_title))
                 makeToast(getString(R.string.chipper_toast))
             }
         }

@@ -28,7 +28,7 @@
         android:id="@+id/gameFragment"
         android:name="com.example.android.crossfittrivia.GameFragment"
         android:label="@string/emom_title"
-        tools:layout="@layout/fragment_emom">
+        tools:layout="@layout/fragment_game">
         <action
             android:id="@+id/action_gameFragment_to_noRepFragment"
             app:destination="@id/noRepFragment" />
@@ -37,8 +37,8 @@
             app:destination="@id/resultsFragment" />
         <argument
             android:name="mode"
-            app:argType="com.example.android.crossfittrivia.utils.Mode"
-            android:defaultValue="EMOM" />
+            android:defaultValue="EMOM"
+            app:argType="com.example.android.crossfittrivia.utils.Mode" />
     </fragment>
     <fragment
         android:id="@+id/noRepFragment"
@@ -69,7 +69,7 @@
             app:destination="@id/choiceFragment" />
         <argument
             android:name="mode"
-            app:argType="com.example.android.crossfittrivia.utils.Mode"
-            android:defaultValue="EMOM" />
+            android:defaultValue="EMOM"
+            app:argType="com.example.android.crossfittrivia.utils.Mode" />
     </fragment>
 </navigation>
