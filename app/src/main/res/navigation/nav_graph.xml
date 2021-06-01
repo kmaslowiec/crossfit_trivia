@@ -71,5 +71,9 @@
             android:name="mode"
             android:defaultValue="EMOM"
             app:argType="com.example.android.crossfittrivia.utils.Mode" />
+        <argument
+            android:name="time"
+            app:argType="long"
+            android:defaultValue="0L" />
     </fragment>
 </navigation>

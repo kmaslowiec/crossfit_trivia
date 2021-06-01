@@ -30,6 +30,7 @@ class GameFragment : Fragment() {
     private var questionIndex = 0
     private var result = 0
     private var answeredQuestions = 0
+    private var num: Long = 0
     private val model: GameViewModel by activityViewModels()
 
     //setup number of questions
@@ -47,12 +48,12 @@ class GameFragment : Fragment() {
 
         setObserver()
 
+        gameMode(args.mode)
+
         randomizeQuestions()
 
         // Bind this fragment class to the layout
         binding.game = this
-
-        gameMode(args.mode)
 
         initSubmitButton()
 
@@ -95,16 +96,19 @@ class GameFragment : Fragment() {
                     if (answeredQuestions < numQuestions) {
                         uploadNextQuestion()
                     } else {
-                        view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToResultsFragment(args.mode))
+                        if (args.mode == Mode.CHIPPER)
+                            view.findNavController().navigate(
+                            GameFragmentDirections
+                                .actionGameFragmentToResultsFragment(args.mode, num)
+                        ) else
+                            view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToResultsFragment(args.mode))
                     }
                 } else {
                     if (args.mode == Mode.EMOM) view.findNavController().navigate(
                         GameFragmentDirections.actionGameFragmentToNoRepFragment
-                            (
-                            currentQuestion
-                                .text
-                        )
+                            (currentQuestion.text)
                     )
+                    questionIndex++
                     uploadNextQuestion()
                 }
             }
@@ -164,7 +168,6 @@ class GameFragment : Fragment() {
     }
 
     private fun stopwatch() {
-        var num: Long = 0
         val timer = Timer()
         val tt: TimerTask = object : TimerTask() {
             override fun run() {
@@ -172,6 +175,7 @@ class GameFragment : Fragment() {
                 activity?.runOnUiThread { setModeTitle(getString(R.string.chipper_title) + TimerUtil.timerDisplay(num)) }
             }
         }
+        
         timer.schedule(tt, 0L, 1000)
     }
 
@@ -180,7 +184,6 @@ class GameFragment : Fragment() {
         when (mode) {
             Mode.AMRAP -> {
                 timer()
-                //setModeTitle(getString(R.string.amrap_title))
                 numQuestions = 1000
                 makeToast(getString(R.string.amrap_entry_toast))
             }
@@ -190,7 +193,6 @@ class GameFragment : Fragment() {
             }
             Mode.CHIPPER -> {
                 stopwatch()
-                //setModeTitle(getString(R.string.emom_title))
                 makeToast(getString(R.string.chipper_toast))
             }
         }
