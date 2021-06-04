@@ -73,47 +73,56 @@ class GameFragment : Fragment() {
     private fun initSubmitButton() {
         binding.submitGameButton.setOnClickListener @Suppress("UNUSED_ANONYMOUS_PARAMETER")
         { view: View ->
-            val checkedId = binding.questionsRadioButton.checkedRadioButtonId
-            answeredQuestions++
-            model.currentGame.value = GameStats(answeredQuestions, result)
+            gameLogic(view)
+        }
+    }
 
-            // Do nothing if nothing is checked (id == -1)
-            if (-1 != checkedId) {
-                var answerIndex = 0
-                when (checkedId) {
-                    R.id.second_answer_radiobutton -> answerIndex = 1
-                    R.id.third_answer_radiobutton -> answerIndex = 2
-                    R.id.fourth_answer_radiobutton -> answerIndex = 3
-                }
+    // Game logic for EMOM, AMRAP and Chipper modes
+    private fun gameLogic(view : View){
+        val checkedId = binding.questionsRadioButton.checkedRadioButtonId
+        // In EMOM mode submit button increases the number of questions
+        if(args.mode == Mode.EMOM) answeredQuestions++
+        model.currentGame.value = GameStats(answeredQuestions, result)
 
-                // The first answer in the original question is always the correct one, so if our
-                // answer matches, we have the correct answer.
-                if (answers[answerIndex] == currentQuestion.answers[0]) {
-                    result++
+        // Do nothing if nothing is checked (id == -1)
+        if (-1 != checkedId) {
+            var answerIndex = 0
+            when (checkedId) {
+                R.id.second_answer_radiobutton -> answerIndex = 1
+                R.id.third_answer_radiobutton -> answerIndex = 2
+                R.id.fourth_answer_radiobutton -> answerIndex = 3
+            }
 
-                    model.currentGame.value = GameStats(answeredQuestions, result)
+            // CORRECT ANSWER
+            // The first answer in the original question is always the correct one, so if our
+            // answer matches, we have the correct answer.
+            if (answers[answerIndex] == currentQuestion.answers[0]) {
+                result++
+                // In Chipper every answer increases number of the questions
+                if(args.mode == Mode.CHIPPER) answeredQuestions++
+                model.currentGame.value = GameStats(answeredQuestions, result)
 
-                    // Advance to the next question
-                    if (answeredQuestions < numQuestions) {
-                        uploadNextQuestion()
-                    } else {
-                        if (args.mode == Mode.CHIPPER) {
-                            cancelStopwatch()
-                            view.findNavController().navigate(
-                                GameFragmentDirections
-                                    .actionGameFragmentToResultsFragment(args.mode, num)
-                            )
-                        } else {
-                            view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToResultsFragment(args.mode))
-                        }
-                    }
-                } else {
-                    if (args.mode == Mode.EMOM) view.findNavController().navigate(
-                        GameFragmentDirections.actionGameFragmentToNoRepFragment
-                            (currentQuestion.text)
-                    )
+                // Advance to the next question
+                if (answeredQuestions < numQuestions) {
                     uploadNextQuestion()
+                } else {
+                    if (args.mode == Mode.CHIPPER) {
+                        cancelStopwatch()
+                        view.findNavController().navigate(
+                            GameFragmentDirections
+                                .actionGameFragmentToResultsFragment(args.mode, num)
+                        )
+                    } else {
+                        view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToResultsFragment(args.mode))
+                    }
                 }
+            } else {
+                if (args.mode == Mode.EMOM) view.findNavController().navigate(
+                    GameFragmentDirections.actionGameFragmentToNoRepFragment
+                        (currentQuestion.text)
+                )
+                // WRONG ANSWER
+                if(args.mode==Mode.CHIPPER) makeToast("Wrong Question") else uploadNextQuestion()
             }
         }
     }
@@ -191,7 +200,6 @@ class GameFragment : Fragment() {
         when (mode) {
             Mode.AMRAP -> {
                 timer()
-                numQuestions = 1000
                 makeToast(getString(R.string.amrap_entry_toast))
             }
             Mode.EMOM -> {
