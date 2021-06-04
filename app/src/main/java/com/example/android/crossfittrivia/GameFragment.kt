@@ -17,6 +17,7 @@ import androidx.navigation.findNavController
 import com.example.android.crossfittrivia.databinding.FragmentGameBinding
 import com.example.android.crossfittrivia.utils.*
 import java.util.*
+import kotlin.concurrent.schedule
 
 class GameFragment : Fragment() {
 
@@ -31,6 +32,7 @@ class GameFragment : Fragment() {
     private var result = 0
     private var answeredQuestions = 0
     private var num: Long = 0
+    private var tt: TimerTask? = null
     private val model: GameViewModel by activityViewModels()
 
     //setup number of questions
@@ -87,7 +89,6 @@ class GameFragment : Fragment() {
                 // The first answer in the original question is always the correct one, so if our
                 // answer matches, we have the correct answer.
                 if (answers[answerIndex] == currentQuestion.answers[0]) {
-                    questionIndex++
                     result++
 
                     model.currentGame.value = GameStats(answeredQuestions, result)
@@ -96,19 +97,21 @@ class GameFragment : Fragment() {
                     if (answeredQuestions < numQuestions) {
                         uploadNextQuestion()
                     } else {
-                        if (args.mode == Mode.CHIPPER)
+                        if (args.mode == Mode.CHIPPER) {
+                            cancelStopwatch()
                             view.findNavController().navigate(
-                            GameFragmentDirections
-                                .actionGameFragmentToResultsFragment(args.mode, num)
-                        ) else
+                                GameFragmentDirections
+                                    .actionGameFragmentToResultsFragment(args.mode, num)
+                            )
+                        } else {
                             view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToResultsFragment(args.mode))
+                        }
                     }
                 } else {
                     if (args.mode == Mode.EMOM) view.findNavController().navigate(
                         GameFragmentDirections.actionGameFragmentToNoRepFragment
                             (currentQuestion.text)
                     )
-                    questionIndex++
                     uploadNextQuestion()
                 }
             }
@@ -169,14 +172,18 @@ class GameFragment : Fragment() {
 
     private fun stopwatch() {
         val timer = Timer()
-        val tt: TimerTask = object : TimerTask() {
+        tt = object : TimerTask() {
             override fun run() {
                 num += 1000L
-                activity?.runOnUiThread { setModeTitle(getString(R.string.chipper_title) + TimerUtil.timerDisplay(num)) }
+                val runnable = Runnable { setModeTitle(getString(R.string.chipper_title) + TimerUtil.timerDisplay(num)) }
+                activity?.runOnUiThread(runnable)
             }
         }
-        
         timer.schedule(tt, 0L, 1000)
+    }
+
+    private fun cancelStopwatch(){
+        tt?.cancel()
     }
 
     // Set the game mode
@@ -208,6 +215,14 @@ class GameFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = title
     }
 
+    // Uploads next question
+    private fun uploadNextQuestion() {
+        questionIndex++
+        currentQuestion = questions[questionIndex]
+        setQuestion()
+        binding.invalidateAll()
+    }
+
     private fun prepToast(timePeriod: Long) {
         when (timePeriod) {
             secondsToMill(40) -> makeToast(getString(R.string.amrap_4_min)) // change to 4 min
@@ -222,12 +237,5 @@ class GameFragment : Fragment() {
 
     private fun secondsToMill(seconds: Int): Long {
         return seconds * 1000L
-    }
-
-    // Uploads next question
-    private fun uploadNextQuestion() {
-        currentQuestion = questions[questionIndex]
-        setQuestion()
-        binding.invalidateAll()
     }
 }
