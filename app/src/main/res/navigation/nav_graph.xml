@@ -38,7 +38,7 @@
         <argument
             android:name="mode"
             android:defaultValue="EMOM"
-            app:argType="com.example.android.crossfittrivia.utils.Mode" />
+            app:argType="com.example.android.crossfittrivia.utils.GameMode" />
     </fragment>
     <fragment
         android:id="@+id/noRepFragment"
@@ -70,10 +70,10 @@
         <argument
             android:name="mode"
             android:defaultValue="EMOM"
-            app:argType="com.example.android.crossfittrivia.utils.Mode" />
+            app:argType="com.example.android.crossfittrivia.utils.GameMode" />
         <argument
             android:name="time"
-            app:argType="long"
-            android:defaultValue="0L" />
+            android:defaultValue="0L"
+            app:argType="long" />
     </fragment>
 </navigation>

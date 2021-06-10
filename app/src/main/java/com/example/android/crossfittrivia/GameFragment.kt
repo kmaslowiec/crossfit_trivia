@@ -17,7 +17,6 @@ import androidx.navigation.findNavController
 import com.example.android.crossfittrivia.databinding.FragmentGameBinding
 import com.example.android.crossfittrivia.utils.*
 import java.util.*
-import kotlin.concurrent.schedule
 
 class GameFragment : Fragment() {
 
@@ -78,10 +77,10 @@ class GameFragment : Fragment() {
     }
 
     // Game logic for EMOM, AMRAP and Chipper modes
-    private fun gameLogic(view : View){
+    private fun gameLogic(view: View) {
         val checkedId = binding.questionsRadioButton.checkedRadioButtonId
         // In EMOM mode submit button increases the number of questions
-        if(args.mode == Mode.EMOM) answeredQuestions++
+        if (args.mode == GameMode.EMOM) answeredQuestions++
         model.currentGame.value = GameStats(answeredQuestions, result)
 
         // Do nothing if nothing is checked (id == -1)
@@ -99,14 +98,14 @@ class GameFragment : Fragment() {
             if (answers[answerIndex] == currentQuestion.answers[0]) {
                 result++
                 // In Chipper every answer increases number of the questions
-                if(args.mode == Mode.CHIPPER) answeredQuestions++
+                if (args.mode == GameMode.CHIPPER) answeredQuestions++
                 model.currentGame.value = GameStats(answeredQuestions, result)
 
                 // Advance to the next question
                 if (answeredQuestions < numQuestions) {
                     uploadNextQuestion()
                 } else {
-                    if (args.mode == Mode.CHIPPER) {
+                    if (args.mode == GameMode.CHIPPER) {
                         cancelStopwatch()
                         view.findNavController().navigate(
                             GameFragmentDirections
@@ -117,12 +116,12 @@ class GameFragment : Fragment() {
                     }
                 }
             } else {
-                if (args.mode == Mode.EMOM) view.findNavController().navigate(
+                if (args.mode == GameMode.EMOM) view.findNavController().navigate(
                     GameFragmentDirections.actionGameFragmentToNoRepFragment
                         (currentQuestion.text)
                 )
                 // WRONG ANSWER
-                if(args.mode==Mode.CHIPPER) makeToast("Wrong Question") else uploadNextQuestion()
+                if (args.mode == GameMode.CHIPPER) makeToast("Wrong Question") else uploadNextQuestion()
             }
         }
     }
@@ -191,22 +190,22 @@ class GameFragment : Fragment() {
         timer.schedule(tt, 0L, 1000)
     }
 
-    private fun cancelStopwatch(){
+    private fun cancelStopwatch() {
         tt?.cancel()
     }
 
     // Set the game mode
-    private fun gameMode(mode: Mode) {
-        when (mode) {
-            Mode.AMRAP -> {
+    private fun gameMode(gameMode: GameMode) {
+        when (gameMode) {
+            GameMode.AMRAP -> {
                 timer()
                 makeToast(getString(R.string.amrap_entry_toast))
             }
-            Mode.EMOM -> {
+            GameMode.EMOM -> {
                 setModeTitle(getString(R.string.emom_title, answeredQuestions + 1, numQuestions))
                 if (answeredQuestions == 0) makeToast(getString(R.string.emom_toast, numQuestions))
             }
-            Mode.CHIPPER -> {
+            GameMode.CHIPPER -> {
                 stopwatch()
                 makeToast(getString(R.string.chipper_toast))
             }

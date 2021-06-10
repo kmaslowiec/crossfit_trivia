@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.android.crossfittrivia.databinding.FragmentChoiceBinding
-import com.example.android.crossfittrivia.utils.Mode
+import com.example.android.crossfittrivia.utils.GameMode
 
 class ChoiceFragment : Fragment() {
 
@@ -35,7 +35,7 @@ class ChoiceFragment : Fragment() {
         binding.toEmomButton.setOnClickListener { view ->
 
             view.findNavController()
-                .navigate(ChoiceFragmentDirections.actionChoiceFragmentToEmomFragment(Mode.EMOM))
+                .navigate(ChoiceFragmentDirections.actionChoiceFragmentToEmomFragment(GameMode.EMOM))
         }
     }
 
@@ -43,7 +43,7 @@ class ChoiceFragment : Fragment() {
         binding.toAmrapButton.setOnClickListener { view ->
             view.findNavController().navigate(
                 ChoiceFragmentDirections
-                    .actionChoiceFragmentToEmomFragment(Mode.AMRAP)
+                    .actionChoiceFragmentToEmomFragment(GameMode.AMRAP)
             )
         }
     }
@@ -52,7 +52,7 @@ class ChoiceFragment : Fragment() {
         binding.toChipperButton.setOnClickListener { view ->
             view.findNavController().navigate(
                 ChoiceFragmentDirections
-                    .actionChoiceFragmentToEmomFragment(Mode.CHIPPER)
+                    .actionChoiceFragmentToEmomFragment(GameMode.CHIPPER)
             )
         }
     }

@@ -11,14 +11,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.android.crossfittrivia.databinding.FragmentResultsBinding
+import com.example.android.crossfittrivia.utils.GameMode
 import com.example.android.crossfittrivia.utils.GameStats
-import com.example.android.crossfittrivia.utils.Mode
 import com.example.android.crossfittrivia.utils.TimerUtil
 
 class ResultsFragment : Fragment() {
 
     private lateinit var binding: FragmentResultsBinding
-    private lateinit var args : ResultsFragmentArgs
+    private lateinit var args: ResultsFragmentArgs
 
     private var answeredQuestions: Int = 0
     private var result: Int = 0
@@ -36,7 +36,7 @@ class ResultsFragment : Fragment() {
         setObserver()
 
         // Show results in the scoreText view
-        if (args.mode == Mode.CHIPPER) {
+        if (args.mode == GameMode.CHIPPER) {
             binding.scoreText.text = resources.getString(R.string.score_time, TimerUtil.timerDisplay(args.time))
         } else {
             binding.scoreText.text = resources.getString(R.string.score_text, result)

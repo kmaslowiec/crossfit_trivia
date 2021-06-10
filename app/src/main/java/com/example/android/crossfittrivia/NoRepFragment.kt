@@ -96,7 +96,7 @@ class NoRepFragment : Fragment() {
                 binding.returnButton.text = resources.getString(R.string.return_button)
                 binding.returnButton.setOnClickListener {
                     if (answeredQuestions < getQuestionLimit()) {
-                        view?.findNavController()?.navigate(NoRepFragmentDirections.actionNoRepFragmentToEmomFragment(Mode.EMOM))
+                        view?.findNavController()?.navigate(NoRepFragmentDirections.actionNoRepFragmentToEmomFragment(GameMode.EMOM))
                     } else {
                         view?.findNavController()?.navigate(NoRepFragmentDirections.actionNoRepFragmentToResultsFragment())
                     }
