@@ -32,6 +32,7 @@
     <!--Chipper Mode-->
     <string name="chipper_title">Chipper</string>
     <string name="chipper_toast">"Do it them all"</string>
+    <string name="wrong_answer">Wrong Answer</string>
 
     <!--Game fragment-->
     <!--radio  buttons-->
@@ -57,5 +58,4 @@
     <string name="score_time">"Time: %s"</string>
     <string name="choose_game">Choose Game</string>
     <string name="question_text">Some question</string>
-
 </resources>

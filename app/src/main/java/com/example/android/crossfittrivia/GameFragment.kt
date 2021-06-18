@@ -3,6 +3,7 @@ package com.example.android.crossfittrivia
 import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,13 +17,16 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.android.crossfittrivia.databinding.FragmentGameBinding
 import com.example.android.crossfittrivia.utils.*
+import com.squareup.picasso.Picasso
 import java.util.*
 
 class GameFragment : Fragment() {
 
     private lateinit var binding: FragmentGameBinding
     private lateinit var args: GameFragmentArgs
-    private var questions: MutableList<Question> = QuestionsList.questions
+    private lateinit var questions: MutableList<Question>
+    private lateinit var questionsTypeTwo: MutableList<Question>
+    private lateinit var questionsTypeThree: MutableList<Question>
 
     //field that are used by DataBinding cannot be private
     lateinit var currentQuestion: Question
@@ -35,7 +39,7 @@ class GameFragment : Fragment() {
     private val model: GameViewModel by activityViewModels()
 
     //setup number of questions
-    private var numQuestions = 3
+    private var questionsLimit = 3
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,11 +62,7 @@ class GameFragment : Fragment() {
 
         initSubmitButton()
 
-        when (currentQuestion.hasPic) {
-            false -> {
-                binding.questionImage.visibility = View.GONE
-            }
-        }
+        setOrDisablePicture(currentQuestion)
 
         // Inflate the layout for this fragment
         return binding.root
@@ -102,8 +102,28 @@ class GameFragment : Fragment() {
                 model.currentGame.value = GameStats(answeredQuestions, result)
 
                 // Advance to the next question
-                if (answeredQuestions < numQuestions) {
-                    uploadNextQuestion()
+                if (answeredQuestions < questionsLimit) {
+
+                    if (args.mode == GameMode.CHIPPER) {
+                        Log.i("Number of question ", answeredQuestions.toString())
+                        when (answeredQuestions) {
+                            6 -> {
+                                questions = questionsTypeTwo
+                                randomizeQuestions()
+                                Log.i("WHERE ", "In Second Type")
+                            }
+                            11 -> {
+                                questions = questionsTypeThree
+                                randomizeQuestions()
+                                Log.i("WHERE ", "In Third Type")
+                            }
+                            else -> questions
+                        }
+                        Log.i("index ", questionIndex.toString())
+                        uploadNextQuestion()
+                    } else {
+                        uploadNextQuestion()
+                    }
                 } else {
                     if (args.mode == GameMode.CHIPPER) {
                         cancelStopwatch()
@@ -121,7 +141,8 @@ class GameFragment : Fragment() {
                         (currentQuestion.text)
                 )
                 // WRONG ANSWER
-                if (args.mode == GameMode.CHIPPER) makeToast("Wrong Question") else uploadNextQuestion()
+                if (args.mode == GameMode.CHIPPER) makeToast(getString(R.string.wrong_answer)) else
+                    uploadNextQuestion()
             }
         }
     }
@@ -146,7 +167,7 @@ class GameFragment : Fragment() {
     // Set SharedPreferences for num of question
     private fun setSharedPreferences() {
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-        sharedPref?.edit()?.putInt("questions", numQuestions)?.apply()
+        sharedPref?.edit()?.putInt("questions", questionsLimit)?.apply()
     }
 
     // Set Observer
@@ -198,14 +219,25 @@ class GameFragment : Fragment() {
     private fun gameMode(gameMode: GameMode) {
         when (gameMode) {
             GameMode.AMRAP -> {
+                questions = QuestionsList.questions
+                questionsTypeTwo = Collections.emptyList()
+                questionsTypeThree = Collections.emptyList()
                 timer()
                 makeToast(getString(R.string.amrap_entry_toast))
             }
             GameMode.EMOM -> {
-                setModeTitle(getString(R.string.emom_title, answeredQuestions + 1, numQuestions))
-                if (answeredQuestions == 0) makeToast(getString(R.string.emom_toast, numQuestions))
+                questions = QuestionsList.questions
+                questionsTypeTwo = Collections.emptyList()
+                questionsTypeThree = Collections.emptyList()
+                setModeTitle(getString(R.string.emom_title, answeredQuestions + 1, questionsLimit))
+                if (answeredQuestions == 0) makeToast(getString(R.string.emom_toast, questionsLimit))
             }
             GameMode.CHIPPER -> {
+                questionsLimit = 15
+                questions = QuestionsList.questions.filter { a -> a.type == QuestionType.TYPE_ONE }.toMutableList()
+                questionsTypeTwo = QuestionsList.questions.filter { a -> a.type == QuestionType.TYPE_TWO }.toMutableList()
+                questionsTypeThree = QuestionsList.questions.filter { a -> a.type == QuestionType.TYPE_THREE }.toMutableList()
+
                 stopwatch()
                 makeToast(getString(R.string.chipper_toast))
             }
@@ -225,7 +257,13 @@ class GameFragment : Fragment() {
     // Uploads next question
     private fun uploadNextQuestion() {
         questionIndex++
+        if (args.mode == GameMode.CHIPPER) {
+            if (questionsTypeTwo.size <= questionIndex) questionIndex = 0
+            if (questionsTypeThree.size <= questionIndex) questionIndex = 0
+        }
+
         currentQuestion = questions[questionIndex]
+        setOrDisablePicture(currentQuestion)
         setQuestion()
         binding.invalidateAll()
     }
@@ -244,5 +282,19 @@ class GameFragment : Fragment() {
 
     private fun secondsToMill(seconds: Int): Long {
         return seconds * 1000L
+    }
+
+    private fun setOrDisablePicture(currentQuestion: Question) {
+        when (currentQuestion.hasPic) {
+            false -> {
+                binding.questionImage.visibility = View.GONE
+            }
+            true -> {
+                Picasso.with(activity)
+                    .load(currentQuestion.picUrl)
+                    .placeholder(R.drawable.loading)
+                    .into(binding.questionImage)
+            }
+        }
     }
 }
