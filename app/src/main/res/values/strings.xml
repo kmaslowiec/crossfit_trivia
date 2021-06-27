@@ -31,7 +31,7 @@
 
     <!--Chipper Mode-->
     <string name="chipper_title">Chipper</string>
-    <string name="chipper_toast">"Do it them all"</string>
+    <string name="chipper_toast">"Do them all"</string>
     <string name="wrong_answer">Wrong Answer</string>
 
     <!--Game fragment-->

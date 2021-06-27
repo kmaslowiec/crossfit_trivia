@@ -28,7 +28,7 @@ class GameFragment : Fragment() {
     private lateinit var questionsTypeTwo: MutableList<Question>
     private lateinit var questionsTypeThree: MutableList<Question>
 
-    //field that are used by DataBinding cannot be private
+    //fields that are used by DataBinding cannot be private
     lateinit var currentQuestion: Question
     lateinit var answers: MutableList<String>
     private var questionIndex = 0
@@ -105,21 +105,17 @@ class GameFragment : Fragment() {
                 if (answeredQuestions < questionsLimit) {
 
                     if (args.mode == GameMode.CHIPPER) {
-                        Log.i("Number of question ", answeredQuestions.toString())
                         when (answeredQuestions) {
                             6 -> {
                                 questions = questionsTypeTwo
                                 randomizeQuestions()
-                                Log.i("WHERE ", "In Second Type")
                             }
                             11 -> {
                                 questions = questionsTypeThree
                                 randomizeQuestions()
-                                Log.i("WHERE ", "In Third Type")
                             }
                             else -> questions
                         }
-                        Log.i("index ", questionIndex.toString())
                         uploadNextQuestion()
                     } else {
                         uploadNextQuestion()
@@ -263,6 +259,7 @@ class GameFragment : Fragment() {
         }
 
         currentQuestion = questions[questionIndex]
+
         setOrDisablePicture(currentQuestion)
         setQuestion()
         binding.invalidateAll()
@@ -290,6 +287,7 @@ class GameFragment : Fragment() {
                 binding.questionImage.visibility = View.GONE
             }
             true -> {
+                binding.questionImage.visibility = View.VISIBLE
                 Picasso.with(activity)
                     .load(currentQuestion.picUrl)
                     .placeholder(R.drawable.loading)
