@@ -93,6 +93,7 @@ class NoRepFragment : Fragment() {
             }
 
             override fun onFinish() {
+                if (!isAdded) return
                 binding.returnButton.text = resources.getString(R.string.return_button)
                 binding.returnButton.setOnClickListener {
                     if (answeredQuestions < getQuestionLimit()) {
