@@ -31,10 +31,12 @@
 
     <!--Chipper Mode-->
     <string name="chipper_title">Chipper</string>
-    <string name="chipper_toast">"Do them all"</string>
+    <string name="chipper_toast">Do them all</string>
     <string name="wrong_answer">Wrong Answer</string>
 
     <!--Game fragment-->
+    <string name="nice_try">NICE TRY! All stats are GONE</string>
+
     <!--radio  buttons-->
     <string name="first_radiobutton_tool_text">First Radio Button</string>
     <string name="second_radiobutton_tool_text">Second Radio Button</string>

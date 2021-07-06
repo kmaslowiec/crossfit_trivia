@@ -3,11 +3,11 @@ package com.example.android.crossfittrivia
 import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -36,6 +36,7 @@ class GameFragment : Fragment() {
     private var answeredQuestions = 0
     private var num: Long = 0
     private var tt: TimerTask? = null
+    private var timer : CountDownTimer? = null
     private val model: GameViewModel by activityViewModels()
 
     //setup number of questions
@@ -68,6 +69,25 @@ class GameFragment : Fragment() {
         return binding.root
     }
 
+
+    //Custom Back Button
+    //Deletes all stats timer and stopwatch when back button is pressed
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        args = GameFragmentArgs.fromBundle(requireArguments())
+            val callback = object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    resetStats()
+                    cancelTimer()
+                    cancelStopwatch()
+                    Navigation.findNavController(binding.root).navigate(GameFragmentDirections.actionGameFragmentToChoiceFragment())
+                    makeToast(getString(R.string.nice_try))
+                }
+            }
+            requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+
+
     // Set the onClickListener for the submitButton
     private fun initSubmitButton() {
         binding.submitGameButton.setOnClickListener @Suppress("UNUSED_ANONYMOUS_PARAMETER")
@@ -82,6 +102,7 @@ class GameFragment : Fragment() {
         // In EMOM mode submit button increases the number of questions
         if (args.mode == GameMode.EMOM) answeredQuestions++
         model.currentGame.value = GameStats(answeredQuestions, result)
+        if (args.mode == GameMode.EMOM) setModeTitle(getString(R.string.emom_title, answeredQuestions + 1, questionsLimit))
 
         // Do nothing if nothing is checked (id == -1)
         if (-1 != checkedId) {
@@ -180,7 +201,7 @@ class GameFragment : Fragment() {
     private fun timer() {
         var timePeriod: Long = secondsToMill(10)
 
-        object : CountDownTimer(timePeriod, 1000) {
+        timer = object : CountDownTimer(timePeriod, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 timePeriod -= 1000L
 
@@ -193,6 +214,10 @@ class GameFragment : Fragment() {
                 Navigation.findNavController(binding.root).navigate(GameFragmentDirections.actionGameFragmentToResultsFragment(args.mode))
             }
         }.start()
+    }
+
+    private fun cancelTimer(){
+        timer?.cancel()
     }
 
     private fun stopwatch() {
@@ -294,5 +319,10 @@ class GameFragment : Fragment() {
                     .into(binding.questionImage)
             }
         }
+    }
+
+    // Reset stats for new game
+    private fun resetStats() {
+        model.currentGame.value = GameStats(0, 0)
     }
 }

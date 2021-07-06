@@ -1,14 +1,18 @@
 package com.example.android.crossfittrivia
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.android.crossfittrivia.databinding.FragmentResultsBinding
 import com.example.android.crossfittrivia.utils.GameMode
@@ -42,13 +46,23 @@ class ResultsFragment : Fragment() {
             binding.scoreText.text = resources.getString(R.string.score_text, result)
         }
 
-
         initPlayAgainButton()
         initChooseGameButton()
 
         return binding.root
     }
 
+    //Custom Back Button
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                resetStats()
+                Navigation.findNavController(binding.root).navigate(ResultsFragmentDirections.actionResultsFragmentToChoiceFragment())
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 
     // Set Observer
     private fun setObserver() {
