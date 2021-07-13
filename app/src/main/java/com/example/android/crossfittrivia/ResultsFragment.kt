@@ -52,7 +52,7 @@ class ResultsFragment : Fragment() {
         return binding.root
     }
 
-    //Custom Back Button
+    /*//Custom Back Button
     override fun onAttach(context: Context) {
         super.onAttach(context)
         val callback = object : OnBackPressedCallback(true) {
@@ -62,6 +62,11 @@ class ResultsFragment : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }*/
+
+    override fun onDetach() {
+        super.onDetach()
+        resetStats()
     }
 
     // Set Observer

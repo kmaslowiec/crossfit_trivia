@@ -31,7 +31,9 @@
         tools:layout="@layout/fragment_game">
         <action
             android:id="@+id/action_gameFragment_to_noRepFragment"
-            app:destination="@id/noRepFragment" />
+            app:destination="@id/noRepFragment"
+            app:popUpTo="@id/choiceFragment"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_gameFragment_to_resultsFragment"
             app:destination="@id/resultsFragment"
@@ -52,7 +54,9 @@
         tools:layout="@layout/fragment_no_rep">
         <action
             android:id="@+id/action_noRepFragment_to_emomFragment"
-            app:destination="@id/gameFragment" />
+            app:destination="@id/gameFragment"
+            app:popUpTo="@id/choiceFragment"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_noRepFragment_to_resultsFragment"
             app:destination="@id/resultsFragment" />

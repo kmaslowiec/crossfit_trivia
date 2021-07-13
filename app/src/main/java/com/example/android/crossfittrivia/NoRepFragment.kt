@@ -10,11 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebView
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.android.crossfittrivia.databinding.FragmentNoRepBinding
 import com.example.android.crossfittrivia.utils.*
 
@@ -27,6 +30,22 @@ class NoRepFragment : Fragment() {
     private val lessons: MutableList<Lesson> = LessonList.lessons
     private var questions: MutableList<Question> = QuestionsList.questions
 
+    //Custom Back Button
+    //Deletes all stats timer and stopwatch when back button is pressed
+    //this happens before on create
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                LiveDataUtil.resetStats(model)
+                NavHostFragment.findNavController(parentFragment!!).navigateUp()
+                Toast.makeText(activity, getString(R.string.nice_try), Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(

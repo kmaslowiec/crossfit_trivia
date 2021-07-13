@@ -3,6 +3,8 @@ package com.example.android.crossfittrivia
 import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +14,13 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import com.example.android.crossfittrivia.databinding.FragmentGameBinding
 import com.example.android.crossfittrivia.utils.*
@@ -44,11 +49,31 @@ class GameFragment : Fragment() {
     //setup number of questions
     private var questionsLimit = 3
 
+    //Custom Back Button
+    //Deletes all stats timer and stopwatch when back button is pressed
+    //this happens before on create
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        args = GameFragmentArgs.fromBundle(requireArguments())
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                LiveDataUtil.resetStats(model)
+                cancelTimer()
+                cancelStopwatch()
+                NavHostFragment.findNavController(parentFragment!!).navigateUp()
+                makeToast(getString(R.string.nice_try))
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        args = GameFragmentArgs.fromBundle(requireArguments())
+        //args = GameFragmentArgs.fromBundle(requireArguments())
         setSharedPreferences()
 
         // Set DataBinding
@@ -70,25 +95,6 @@ class GameFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
-
-
-    //Custom Back Button
-    //Deletes all stats timer and stopwatch when back button is pressed
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        args = GameFragmentArgs.fromBundle(requireArguments())
-            val callback = object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    resetStats()
-                    cancelTimer()
-                    cancelStopwatch()
-                    Navigation.findNavController(binding.root).navigate(GameFragmentDirections.actionGameFragmentToChoiceFragment())
-                    makeToast(getString(R.string.nice_try))
-                }
-            }
-            requireActivity().onBackPressedDispatcher.addCallback(this, callback)
-    }
-
 
     // Set the onClickListener for the submitButton
     private fun initSubmitButton() {
@@ -321,10 +327,5 @@ class GameFragment : Fragment() {
                     .into(binding.questionImage)
             }
         }
-    }
-
-    // Reset stats for new game
-    private fun resetStats() {
-        model.currentGame.value = GameStats(0, 0)
     }
 }
