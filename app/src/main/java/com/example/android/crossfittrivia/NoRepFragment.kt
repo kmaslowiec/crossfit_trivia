@@ -2,6 +2,7 @@ package com.example.android.crossfittrivia
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -35,12 +36,24 @@ class NoRepFragment : Fragment() {
     //this happens before on create
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        //create listener for yes/no dialog
+        val dialogClickListener : DialogInterface.OnClickListener = DialogInterface.OnClickListener { dialog, which ->
+            when(which) {
+                DialogInterface.BUTTON_POSITIVE -> {
+                    LiveDataUtil.resetStats(model)
+                    NavHostFragment.findNavController(requireParentFragment()).navigateUp()
+                    MessageUtil.makeToast(getString(R.string.all_stats_gone), requireActivity())
+                }
+                DialogInterface.BUTTON_NEGATIVE -> {
+                    return@OnClickListener
+                }
+            }
+        }
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 LiveDataUtil.resetStats(model)
-                NavHostFragment.findNavController(parentFragment!!).navigateUp()
-                Toast.makeText(activity, getString(R.string.nice_try), Toast.LENGTH_SHORT).show()
+                MessageUtil.backButtonDialog(context, dialogClickListener)
             }
         }
 
@@ -63,8 +76,6 @@ class NoRepFragment : Fragment() {
         returnButton()
 
         val args = NoRepFragmentArgs.fromBundle(requireArguments())
-
-        Log.i("ARGUMENT FROM EMOM", args.question)
 
         val currentLesson = lessons.find { a -> a.question == args.question }
 

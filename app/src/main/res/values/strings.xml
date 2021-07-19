@@ -35,7 +35,7 @@
     <string name="wrong_answer">Wrong Answer</string>
 
     <!--Game fragment-->
-    <string name="nice_try">NICE TRY! All stats are GONE</string>
+    <string name="all_stats_gone">All stats are GONE</string>
 
     <!--radio  buttons-->
     <string name="first_radiobutton_tool_text">First Radio Button</string>
@@ -60,4 +60,9 @@
     <string name="score_time">"Time: %s"</string>
     <string name="choose_game">Choose Game</string>
     <string name="question_text">Some question</string>
+
+    <!--MessageUtil-->
+    <string name="back_button_ask">Do you want to lose all the stats?</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
 </resources>

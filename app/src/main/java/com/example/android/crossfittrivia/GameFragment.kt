@@ -1,27 +1,23 @@
 package com.example.android.crossfittrivia
 
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
 import com.example.android.crossfittrivia.databinding.FragmentGameBinding
 import com.example.android.crossfittrivia.utils.*
 import com.squareup.picasso.Picasso
@@ -56,13 +52,26 @@ class GameFragment : Fragment() {
         super.onAttach(context)
         args = GameFragmentArgs.fromBundle(requireArguments())
 
+        //create listener for yes/no dialog
+        val dialogClickListener : DialogInterface.OnClickListener = DialogInterface.OnClickListener { dialog, which ->
+            when(which) {
+                DialogInterface.BUTTON_POSITIVE -> {
+                    LiveDataUtil.resetStats(model)
+                    cancelTimer()
+                    cancelStopwatch()
+                    NavHostFragment.findNavController(requireParentFragment()).navigateUp()
+                    MessageUtil.makeToast(getString(R.string.all_stats_gone), requireActivity())
+                }
+                DialogInterface.BUTTON_NEGATIVE -> {
+                    return@OnClickListener
+                }
+            }
+        }
+
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                LiveDataUtil.resetStats(model)
-                cancelTimer()
-                cancelStopwatch()
-                NavHostFragment.findNavController(parentFragment!!).navigateUp()
-                makeToast(getString(R.string.nice_try))
+
+                MessageUtil.backButtonDialog(context, dialogClickListener)
             }
         }
 
