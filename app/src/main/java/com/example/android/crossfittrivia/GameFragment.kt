@@ -332,7 +332,7 @@ class GameFragment : Fragment() {
                 binding.questionImage.visibility = View.VISIBLE
                 Picasso.with(activity)
                     .load(currentQuestion.picUrl)
-                    .placeholder(R.drawable.loading)
+                    .placeholder(R.drawable.progress_animation)
                     .into(binding.questionImage)
             }
         }

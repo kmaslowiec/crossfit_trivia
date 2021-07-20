@@ -52,18 +52,6 @@ class ResultsFragment : Fragment() {
         return binding.root
     }
 
-    /*//Custom Back Button
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                resetStats()
-                Navigation.findNavController(binding.root).navigate(ResultsFragmentDirections.actionResultsFragmentToChoiceFragment())
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
-    }*/
-
     override fun onDetach() {
         super.onDetach()
         resetStats()

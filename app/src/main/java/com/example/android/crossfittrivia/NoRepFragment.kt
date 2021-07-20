@@ -143,7 +143,6 @@ class NoRepFragment : Fragment() {
 
         val webSettings: WebSettings = myWebVideo.settings
         webSettings.javaScriptEnabled = true
-
         myWebVideo.loadUrl(url)
     }
 }
