@@ -88,4 +88,9 @@
             android:defaultValue="0L"
             app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/authorFragment"
+        android:name="com.example.android.crossfittrivia.AuthorFragment"
+        android:label="Author"
+        tools:layout="@layout/fragment_author" />
 </navigation>
