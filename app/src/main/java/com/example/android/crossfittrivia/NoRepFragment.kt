@@ -5,13 +5,11 @@ import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -37,8 +35,8 @@ class NoRepFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         //create listener for yes/no dialog
-        val dialogClickListener : DialogInterface.OnClickListener = DialogInterface.OnClickListener { dialog, which ->
-            when(which) {
+        val dialogClickListener: DialogInterface.OnClickListener = DialogInterface.OnClickListener { _, which ->
+            when (which) {
                 DialogInterface.BUTTON_POSITIVE -> {
                     LiveDataUtil.resetStats(model)
                     NavHostFragment.findNavController(requireParentFragment()).navigateUp()

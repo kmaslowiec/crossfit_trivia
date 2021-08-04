@@ -15,12 +15,22 @@
         android:text="@string/lorem_ipsum" />
 
     <!--EMOM Button-->
-    <TextView
+  <!--  <TextView
         android:id="@+id/to_emom_button"
         style="@style/my_button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_choice_button"
-        android:text="@string/emomButton" />
+        android:text="@string/emomButton" />-->
+    <Button
+        android:id="@+id/to_emom_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:text="@string/emomButton"
+        android:fontFamily="@font/roboto_mono_bold"
+        android:textSize="40sp"
+
+        />
 
     <TextView
         android:id="@+id/amrap_text"

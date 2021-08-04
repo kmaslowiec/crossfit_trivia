@@ -16,8 +16,8 @@
         android:contentDescription="@string/me_desc"
         android:src="@drawable/mini_me"
         app:shapeAppearanceOverlay="@style/roundedImage"
-        app:strokeWidth="1dp"
-        app:strokeColor="@color/white" />
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp" />
 
     <TextView
         android:id="@+id/author_text"

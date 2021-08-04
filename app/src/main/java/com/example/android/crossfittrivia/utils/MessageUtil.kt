@@ -14,9 +14,11 @@ class MessageUtil {
             Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
         }
 
-        fun backButtonDialog(context : Context, dialogClickListener : DialogInterface.OnClickListener){
-            AlertDialog.Builder(context).setMessage(context.getString(R.string.back_button_ask)).setPositiveButton(context.getString(R.string.yes),
-                dialogClickListener)
+        fun backButtonDialog(context: Context, dialogClickListener: DialogInterface.OnClickListener) {
+            AlertDialog.Builder(context).setMessage(context.getString(R.string.back_button_ask)).setPositiveButton(
+                context.getString(R.string.yes),
+                dialogClickListener
+            )
                 .setNegativeButton(R.string.no, dialogClickListener).show()
         }
     }

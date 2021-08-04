@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Moon colors-->
+    <color name="dark_moon">#29292b</color>
+    <color name="mid_moon">#92918f</color>
+    <color name="light_moon">#b0aba8</color>
+    <color name="very_light_moon">#e5e0dd</color>
+</resources>

@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -39,7 +38,7 @@ class GameFragment : Fragment() {
     private var answeredQuestions = 0
     private var num: Long = 0
     private var tt: TimerTask? = null
-    private var timer : CountDownTimer? = null
+    private var timer: CountDownTimer? = null
     private val model: GameViewModel by activityViewModels()
 
     //setup number of questions
@@ -53,8 +52,8 @@ class GameFragment : Fragment() {
         args = GameFragmentArgs.fromBundle(requireArguments())
 
         //create listener for yes/no dialog
-        val dialogClickListener : DialogInterface.OnClickListener = DialogInterface.OnClickListener { dialog, which ->
-            when(which) {
+        val dialogClickListener: DialogInterface.OnClickListener = DialogInterface.OnClickListener { _, which ->
+            when (which) {
                 DialogInterface.BUTTON_POSITIVE -> {
                     LiveDataUtil.resetStats(model)
                     cancelTimer()
@@ -233,7 +232,7 @@ class GameFragment : Fragment() {
         }.start()
     }
 
-    private fun cancelTimer(){
+    private fun cancelTimer() {
         timer?.cancel()
     }
 
