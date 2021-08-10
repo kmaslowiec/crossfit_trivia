@@ -5,4 +5,11 @@
     <color name="mid_moon">#92918f</color>
     <color name="light_moon">#b0aba8</color>
     <color name="very_light_moon">#e5e0dd</color>
+
+    <!--Earth colors-->
+
+    <color name="dark_ocean">#032d71</color>
+    <color name="ocean">#4c98bb</color>
+    <color name="light_ocean">#81c3de</color>
+    <color name="clouds">#f1f3f6</color>
 </resources>

@@ -23,6 +23,7 @@
         android:text="@string/emomButton" />-->
     <Button
         android:id="@+id/to_emom_button"
+        android:backgroundTint="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_button"

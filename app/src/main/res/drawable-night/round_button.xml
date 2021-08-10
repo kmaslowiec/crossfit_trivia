@@ -8,5 +8,4 @@
         android:width="240dp"
         android:height="240dp" />
     <stroke android:width="@dimen/button_border_thickness" android:color="@color/button_border" />
-
 </shape>
