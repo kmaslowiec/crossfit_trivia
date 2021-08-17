@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".ChoiceFragment">
 
@@ -14,23 +14,13 @@
         android:layout_height="wrap_content"
         android:text="@string/lorem_ipsum" />
 
-    <!--EMOM Button-->
-  <!--  <TextView
-        android:id="@+id/to_emom_button"
-        style="@style/my_button"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_choice_button"
-        android:text="@string/emomButton" />-->
     <Button
         android:id="@+id/to_emom_button"
-        android:backgroundTint="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_button"
         android:text="@string/emomButton"
-        android:fontFamily="@font/roboto_mono_bold"
-        android:textSize="40sp"
-
+        style="@style/my_button"
         />
 
     <TextView
@@ -40,13 +30,14 @@
         android:layout_height="wrap_content"
         android:text="@string/lorem_ipsum" />
 
-    <!--AMRAP Button-->
-    <TextView
+    <Button
         android:id="@+id/to_amrap_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:text="@string/amrapButton"
         style="@style/my_button"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_choice_button"
-        android:text="@string/amrapButton" />
+        />
 
     <TextView
         android:id="@+id/chipper_text"
@@ -55,11 +46,12 @@
         android:layout_height="wrap_content"
         android:text="@string/lorem_ipsum" />
 
-    <!--Chipper Button-->
-    <TextView
+    <Button
         android:id="@+id/to_chipper_button"
-        style="@style/my_button"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_choice_button"
-        android:text="@string/chipperButton" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:text="@string/chipperButton"
+    style="@style/my_button"
+        />
 </LinearLayout>

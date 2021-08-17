@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="view_start_margin">8dp</dimen>
-    <dimen name="view_margin_end">8dp</dimen>
-    <dimen name="label_margin_top">8dp</dimen>
-    <dimen name="label_margin_bottom">8dp</dimen>
+
+    <dimen name="view_start_margin">16dp</dimen>
+    <dimen name="view_margin_end">16dp</dimen>
+    <dimen name="label_margin_top">16dp</dimen>
+    <dimen name="label_margin_bottom">16dp</dimen>
     <dimen name="top_bottom_padding_button">8dp</dimen>
     <dimen name="vertical_margin">16dp</dimen>
     <dimen name="horizontal_margin">8dp</dimen>
@@ -22,6 +23,10 @@
     <dimen name="image_header_height">192dp</dimen>
     <dimen name="video_height">300dp</dimen>
 
-<!--button-->
-    <dimen name="button_border_thickness">2dp</dimen>
+    <!--button-->
+    <dimen name="button_border_thickness">1px</dimen>
+    <dimen name="rounded_button_width">350dp</dimen>
+    <dimen name="rounded_button_height">75dp</dimen>
+    <dimen name="rounded_button_text_size">40sp</dimen>
+    <dimen name="circle_button_text_size">35sp</dimen>
 </resources>

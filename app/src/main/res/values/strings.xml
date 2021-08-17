@@ -9,8 +9,8 @@
     </string>
 
     <!--ChoiceFragment-->
-    <string name="emomButton">EMOM</string>
-    <string name="amrapButton">AMRAP</string>
+    <string name="emomButton">E.M.O.M</string>
+    <string name="amrapButton">A.M.R.A.P</string>
     <string name="chipperButton">Chipper</string>
     <string name="choice_title">Choose Game</string>
 

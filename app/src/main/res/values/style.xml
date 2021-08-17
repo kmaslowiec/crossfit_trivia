@@ -11,17 +11,15 @@
     </style>
 
     <style name="my_button">
-        <item name="android:background">@drawable/shape_choice_button</item>
         <item name="android:fontFamily">@font/roboto_mono_bold</item>
-        <item name="android:layout_marginStart">@dimen/view_start_margin</item>
-        <item name="android:layout_marginEnd">@dimen/view_margin_end</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:paddingTop">@dimen/top_bottom_padding_button</item>
-        <item name="android:paddingBottom">@dimen/top_bottom_padding_button</item>
-        <item name="android:gravity">center</item>
-        <!--<item name="android:textAlignment">center</item>-->
-        <item name="android:textSize">@dimen/text_button</item>
+        <item name="android:textSize">@dimen/rounded_button_text_size</item>,
+        <item name="android:textColor">@color/button_text</item>
+    </style>
+
+    <style name="circle_button">
+        <item name="android:fontFamily">@font/roboto_mono_bold</item>
+        <item name="android:textSize">@dimen/circle_button_text_size</item>,
+        <item name="android:textColor">@color/button_text</item>
     </style>
 
     <style name="label_big">
