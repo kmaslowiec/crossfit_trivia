@@ -1,6 +1,5 @@
 package com.example.android.crossfittrivia
 
-import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
@@ -52,7 +51,7 @@ class GameFragment : Fragment() {
         super.onAttach(context)
         args = GameFragmentArgs.fromBundle(requireArguments())
 
-        //create listener for yes/no dialog
+       //create listener for yes/no dialog
         val dialogClickListener: DialogInterface.OnClickListener = DialogInterface.OnClickListener { _, which ->
             when (which) {
                 DialogInterface.BUTTON_POSITIVE -> {
@@ -69,13 +68,14 @@ class GameFragment : Fragment() {
 
         }
 
+        /*back button listener*/
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-
                 MessageUtil.backButtonDialog(context, dialogClickListener)
             }
         }
 
+        /*init back button listener*/
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
@@ -338,4 +338,6 @@ class GameFragment : Fragment() {
             }
         }
     }
+
+
 }

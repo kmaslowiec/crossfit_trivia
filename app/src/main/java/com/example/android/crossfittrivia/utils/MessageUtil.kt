@@ -15,7 +15,7 @@ class MessageUtil {
         }
 
         fun backButtonDialog(context: Context, dialogClickListener: DialogInterface.OnClickListener) {
-            AlertDialog.Builder(context).setMessage(context.getString(R.string.back_button_ask)).setPositiveButton(
+            AlertDialog.Builder(context, R.style.CustomDialogStyle).setMessage(context.getString(R.string.back_button_ask)).setPositiveButton(
                 context.getString(R.string.yes),
                 dialogClickListener
             )
