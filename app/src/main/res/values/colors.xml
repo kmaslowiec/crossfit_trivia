@@ -19,9 +19,10 @@
     <color name="black_overlay">#66000000</color>
 
     <!--custom colors-->
-    <color name="text">@color/black</color>
+    <color name="text">@color/ocean</color>
     <color name="button_text">@color/clouds</color>
     <color name="button_background_start">@color/light_ocean</color>
     <color name="button_background_end">@color/dark_ocean</color>
     <color name="button_border">@color/dark_ocean</color>
+    <color name="radio_button_checked">@color/ocean</color>
 </resources>

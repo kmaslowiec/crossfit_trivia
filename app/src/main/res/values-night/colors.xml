@@ -18,9 +18,10 @@
     <color name="black_overlay">#66000000</color>
 
     <!--custom colors-->
-    <color name="text">@color/light_moon</color>
+    <color name="text">@color/very_light_moon</color>
     <color name="button_text">@color/light_moon</color>
     <color name="button_background_start">@color/light_moon</color>
     <color name="button_background_end">@color/dark_moon</color>
     <color name="button_border">@color/white</color>
+    <color name="radio_button_checked">@color/mid_moon</color>
 </resources>

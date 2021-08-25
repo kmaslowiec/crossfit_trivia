@@ -1,5 +1,6 @@
 package com.example.android.crossfittrivia
 
+import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
@@ -65,6 +66,7 @@ class GameFragment : Fragment() {
                     return@OnClickListener
                 }
             }
+
         }
 
         val callback = object : OnBackPressedCallback(true) {

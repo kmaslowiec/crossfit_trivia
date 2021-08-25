@@ -33,6 +33,7 @@
         <item name="android:gravity">center</item>
         <!--<item name="android:textAlignment">center</item>-->
         <item name="android:textSize">@dimen/text_button</item>
+        <item name="android:textColor">@color/text</item>
     </style>
 
     <style name="roundedImage">
