@@ -42,17 +42,22 @@
         <item name="android:textColor">@color/text</item>
     </style>
 
-    <style name="roundedImage">
+    <style name="roundImage">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="roundedImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">25%</item>
+    </style>
+
     <style name="CustomDialogStyle" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <!-- buttons -->
-        <item name="colorAccent">@color/ocean</item>
+        <item name="colorAccent">@color/dialog_buttons</item>
         <!-- title and text -->
-        <item name="android:textColorPrimary">@color/ocean</item>
+        <item name="android:textColorPrimary">@color/dialog_text</item>
         <!-- background you can change some other color than white -->
-        <item name="android:background">@color/clouds</item>
+        <item name="android:background">@color/dialog_background</item>
     </style>
 </resources>

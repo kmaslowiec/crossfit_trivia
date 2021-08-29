@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?><!--suppress CheckTagEmptyBody -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".ResultsFragment">
 
@@ -11,8 +12,10 @@
         android:id="@+id/borat_image"
         android:layout_width="wrap_content"
         android:layout_height="280dp"
+        android:layout_marginTop="@dimen/label_margin_top"
         android:contentDescription="@string/great_success"
         android:scaleType="centerInside"
+        app:strokeColor="@color/border_button"
         android:src="@drawable/great_success" />
 
     <TextView
@@ -23,17 +26,20 @@
         android:layout_gravity="center"
         android:text="@string/score" />
 
-    <TextView
+    <Button
         android:id="@+id/again_button"
-        style="@style/my_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        style="@style/my_button"
         android:text="@string/play_again" />
 
-    <TextView
+    <Button
         android:id="@+id/choose_game_button"
-        style="@style/my_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/label_margin_top"
+        android:background="@drawable/rounded_button"
+        style="@style/my_button"
         android:text="@string/choose_game" />
 </LinearLayout>

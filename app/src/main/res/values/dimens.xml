@@ -24,7 +24,7 @@
     <dimen name="video_height">300dp</dimen>
 
     <!--button-->
-    <dimen name="button_border_thickness">1px</dimen>
+    <dimen name="button_border_thickness">1dp</dimen>
     <dimen name="rounded_button_width">350dp</dimen>
     <dimen name="rounded_button_height">75dp</dimen>
     <dimen name="rounded_button_text_size">40sp</dimen>

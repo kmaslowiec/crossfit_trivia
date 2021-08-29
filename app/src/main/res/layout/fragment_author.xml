@@ -15,8 +15,8 @@
         android:layout_margin="@dimen/vertical_margin"
         android:contentDescription="@string/me_desc"
         android:src="@drawable/mini_me"
-        app:shapeAppearanceOverlay="@style/roundedImage"
-        app:strokeColor="@color/white"
+        app:shapeAppearanceOverlay="@style/roundImage"
+        app:strokeColor="@color/border_button"
         app:strokeWidth="1dp" />
 
     <TextView

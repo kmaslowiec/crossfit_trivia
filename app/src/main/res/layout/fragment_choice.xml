@@ -27,10 +27,10 @@
 
             <Button
                 android:id="@+id/to_emom_button"
+                android:background="@drawable/rounded_button"
                 style="@style/my_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_button"
                 android:text="@string/emomButton" />
 
             <TextView
@@ -42,10 +42,10 @@
 
             <Button
                 android:id="@+id/to_amrap_button"
+                android:background="@drawable/rounded_button"
                 style="@style/my_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_button"
                 android:text="@string/amrapButton" />
 
             <TextView
@@ -57,10 +57,10 @@
 
             <Button
                 android:id="@+id/to_chipper_button"
+                android:background="@drawable/rounded_button"
                 style="@style/my_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_button"
                 android:text="@string/chipperButton" />
         </LinearLayout>
     </ScrollView>

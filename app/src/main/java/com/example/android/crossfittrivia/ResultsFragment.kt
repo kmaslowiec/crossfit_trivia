@@ -30,6 +30,7 @@ class ResultsFragment : Fragment() {
     ): View {
 
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.results_title)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         // Inflate the layout for this fragment
         binding = FragmentResultsBinding.inflate(inflater)
         args = ResultsFragmentArgs.fromBundle(requireArguments())

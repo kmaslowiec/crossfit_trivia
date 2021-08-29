@@ -22,6 +22,9 @@
     <color name="button_text">@color/light_moon</color>
     <color name="button_background_start">@color/light_moon</color>
     <color name="button_background_end">@color/dark_moon</color>
-    <color name="button_border">@color/white</color>
+    <color name="button_border">@color/mid_moon</color>
     <color name="radio_button_checked">@color/mid_moon</color>
+    <color name="dialog_buttons">@color/dark_moon</color>
+    <color name="dialog_text">@color/dark_moon</color>
+    <color name="dialog_background">@color/mid_moon</color>
 </resources>

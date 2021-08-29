@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/gameFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
         android:id="@+id/startFragment"
@@ -13,7 +13,8 @@
         <action
             android:id="@+id/action_startFragment_to_choiceFragment"
             app:destination="@id/choiceFragment"
-            app:popUpTo="@id/startFragment" />
+            app:popUpTo="@id/choiceFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/choiceFragment"
@@ -79,7 +80,7 @@
         <action
             android:id="@+id/action_resultsFragment_to_choiceFragment"
             app:destination="@id/choiceFragment"
-            app:popUpToInclusive="false" />
+            app:popUpTo="@id/choiceFragment" />
         <argument
             android:name="mode"
             android:defaultValue="EMOM"

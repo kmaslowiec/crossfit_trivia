@@ -12,9 +12,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        /*    val toolbar: Toolbar = findViewById(R.id.toolbar)
-            toolbar.setTitleTextColor(Color.RED)
-            setSupportActionBar(toolbar)*/
         /* That is required to work with FragmentContainerView. Outside on create we can use:
            val navController = this.findNavController(R.id.nav_host_fragment) */
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -22,9 +19,9 @@ class MainActivity : AppCompatActivity() {
         //this updated builder indicates which fragments, are top fragments that have no up button
         val appBarConfiguration = AppBarConfiguration.Builder(
             R.id.startFragment,
-            R.id.resultsFragment,
+          /*  R.id.resultsFragment,
             R.id.gameFragment,
-            R.id.noRepFragment
+            R.id.noRepFragment*/
         ).build()
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)

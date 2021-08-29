@@ -1,12 +1,12 @@
 package com.example.android.crossfittrivia
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.android.crossfittrivia.databinding.FragmentChoiceBinding
 import com.example.android.crossfittrivia.utils.GameMode
 

@@ -17,6 +17,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.android.crossfittrivia.databinding.FragmentGameBinding
 import com.example.android.crossfittrivia.utils.*
 import com.squareup.picasso.Picasso
@@ -85,6 +86,7 @@ class GameFragment : Fragment() {
     ): View {
         //args = GameFragmentArgs.fromBundle(requireArguments())
         setSharedPreferences()
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         // Set DataBinding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game, container, false)

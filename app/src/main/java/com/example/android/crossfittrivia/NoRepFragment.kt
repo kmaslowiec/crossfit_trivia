@@ -65,6 +65,7 @@ class NoRepFragment : Fragment() {
     ): View {
         //Set fragment's title
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.no_rep_title)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         //Set ViewBinding for the Fragment
         binding = FragmentNoRepBinding.inflate(inflater)

@@ -23,6 +23,9 @@
     <color name="button_text">@color/clouds</color>
     <color name="button_background_start">@color/light_ocean</color>
     <color name="button_background_end">@color/dark_ocean</color>
-    <color name="button_border">@color/dark_ocean</color>
+    <color name="button_border">@color/light_ocean</color>
     <color name="radio_button_checked">@color/ocean</color>
+    <color name="dialog_buttons">@color/ocean</color>
+    <color name="dialog_text">@color/ocean</color>
+    <color name="dialog_background">@color/very_light_ocean</color>
 </resources>
