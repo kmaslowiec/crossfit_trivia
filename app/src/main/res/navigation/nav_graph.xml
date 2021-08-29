@@ -28,6 +28,7 @@
         android:id="@+id/gameFragment"
         android:name="com.example.android.crossfittrivia.GameFragment"
         android:label="@string/emom_title"
+        app:startDestination="@id/action_gameFragment_to_noRepFragment"
         tools:layout="@layout/fragment_game">
         <action
             android:id="@+id/action_gameFragment_to_noRepFragment"

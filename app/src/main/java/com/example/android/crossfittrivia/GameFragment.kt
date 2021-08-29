@@ -51,7 +51,7 @@ class GameFragment : Fragment() {
         super.onAttach(context)
         args = GameFragmentArgs.fromBundle(requireArguments())
 
-       //create listener for yes/no dialog
+        //create listener for yes/no dialog
         val dialogClickListener: DialogInterface.OnClickListener = DialogInterface.OnClickListener { _, which ->
             when (which) {
                 DialogInterface.BUTTON_POSITIVE -> {

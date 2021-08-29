@@ -18,6 +18,12 @@
 
     <style name="circle_button">
         <item name="android:fontFamily">@font/roboto_mono_bold</item>
+        <item name="android:textSize">@dimen/circle_button_text_size</item>
+        <item name="android:textColor">@color/button_text</item>
+    </style>
+
+    <style name="radio_button">
+        <item name="android:fontFamily">@font/roboto_mono_bold</item>
         <item name="android:textSize">@dimen/circle_button_text_size</item>,
         <item name="android:textColor">@color/button_text</item>
     </style>
@@ -42,15 +48,11 @@
     </style>
 
     <style name="CustomDialogStyle" parent="Theme.AppCompat.DayNight.Dialog.Alert">
-
         <!-- buttons -->
-        <item name="colorAccent">@color/black</item>
+        <item name="colorAccent">@color/ocean</item>
         <!-- title and text -->
-        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorPrimary">@color/ocean</item>
         <!-- background you can change some other color than white -->
-        <item name="android:background">#FFFFFF</item>
-        <!-- change if you want below -->
-        <item name="android:textColor">@color/black</item>
-        <!--<item name="android:textSize">50sp</item>-->
+        <item name="android:background">@color/clouds</item>
     </style>
 </resources>

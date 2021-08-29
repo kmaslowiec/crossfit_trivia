@@ -3,16 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".StartFragment">
 
     <Button
         android:id="@+id/to_choice_button"
+        style="@style/circle_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_button"
-        style="@style/circle_button"
-        android:text="@string/game_start_button"
-         />
+        android:text="@string/game_start_button" />
 </LinearLayout>

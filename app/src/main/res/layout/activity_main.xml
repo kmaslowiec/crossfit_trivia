@@ -14,7 +14,7 @@
         app:defaultNavHost="true"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/nav_graph"
-        tools:layout_editor_absoluteX="16dp" >
+        tools:layout_editor_absoluteX="16dp">
 
 
     </androidx.fragment.app.FragmentContainerView>
